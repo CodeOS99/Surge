@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://clyhh8p3lxx8l"]
+
+[ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="1_lese3"]
+[ext_resource type="Texture2D" uid="uid://bfg6mnfn58t2b" path="res://Assets/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_attack_strip7.png" id="2_0vbft"]
+
+[node name="MainGame" type="Node2D"]
+
+[node name="SkeletonAttackStrip7" type="Sprite2D" parent="."]
+position = Vector2(371, 241)
+texture = ExtResource("2_0vbft")
+
+[node name="Player" parent="." instance=ExtResource("1_lese3")]
+position = Vector2(133, 177)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(3, 3)

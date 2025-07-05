@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygmwifkjwl0o"]
+
+[ext_resource type="Script" path="res://Scripts/quit_btn.gd" id="1_3kred"]
+[ext_resource type="Script" path="res://Scripts/play_btn.gd" id="1_5wcpa"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.5
+offset_right = 120.5
+offset_bottom = 103.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 75
+text = "SURGE"
+
+[node name="PlayBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = -96.0
+offset_right = 135.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 75
+text = "PLAY!"
+script = ExtResource("1_5wcpa")
+
+[node name="QuitBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -135.0
+offset_top = 109.0
+offset_right = 135.0
+offset_bottom = 301.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 75
+text = "QUIT"
+script = ExtResource("1_3kred")
+
+[connection signal="pressed" from="PlayBtn" to="PlayBtn" method="_on_pressed"]
+[connection signal="pressed" from="QuitBtn" to="QuitBtn" method="_on_pressed"]

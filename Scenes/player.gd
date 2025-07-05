@@ -3,6 +3,12 @@ extends CharacterBody2D
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
 
+enum STATES {
+	WALKING,
+	RUNNING,
+	ROLL
+}
+
 @onready
 var ANIMATED_SPRITE := $AnimatedSprite2D
 

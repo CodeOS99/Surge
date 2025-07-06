@@ -58,7 +58,7 @@ func _ready() -> void:
 				push_warning("The TileMapLayer's tile size doesn't match with generator's tile size, can cause generation issues.
 							The generator's tile size has been set to the layer's tile size. (Only layer 0 checked)")
 				generator.tile_size = Vector2(layer.tile_set.tile_size) * layer.scale
-
+	$"../treeSpawner".spawnTrees()
 
 func _draw_area(area: Rect2i) -> void:
 	var terrains: Dictionary

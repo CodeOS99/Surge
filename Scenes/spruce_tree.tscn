@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cryo1p2chq20v"]
+
+[ext_resource type="Texture2D" uid="uid://cnxc7gmmrg2ku" path="res://Assets/Sunnyside_World_Assets/Elements/Plants/spr_deco_tree_02_strip4.png" id="1_mudbl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mmno"]
+atlas = ExtResource("1_mudbl")
+region = Rect2(0, 0, 28, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tvn2p"]
+atlas = ExtResource("1_mudbl")
+region = Rect2(28, 0, 28, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxrp2"]
+atlas = ExtResource("1_mudbl")
+region = Rect2(56, 0, 28, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geset"]
+atlas = ExtResource("1_mudbl")
+region = Rect2(84, 0, 28, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o31js"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mmno")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tvn2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxrp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geset")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="SpruceTree" type="StaticBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o31js")
+frame_progress = 0.262834
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

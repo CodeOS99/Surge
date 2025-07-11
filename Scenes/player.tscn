@@ -1,9 +1,53 @@
-[gd_scene load_steps=32 format=3 uid="uid://crvil3gpy50r7"]
+[gd_scene load_steps=44 format=3 uid="uid://crvil3gpy50r7"]
 
 [ext_resource type="Texture2D" uid="uid://duskqc5mvditn" path="res://Assets/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="1_ofw25"]
-[ext_resource type="Script" path="res://Scenes/player.gd" id="1_ryt16"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_ryt16"]
+[ext_resource type="Texture2D" uid="uid://beb1s78qg6mr1" path="res://Assets/Sunnyside_World_Assets/Characters/Human/AXE/base_axe_strip10.png" id="2_aof03"]
 [ext_resource type="Texture2D" uid="uid://cxdgi36ow5lxw" path="res://Assets/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="2_du0tt"]
 [ext_resource type="Texture2D" uid="uid://dny08pfq4ys5k" path="res://Assets/Sunnyside_World_Assets/Characters/Human/WALKING/base_walk_strip8.png" id="3_twh8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfpq1"]
+size = Vector2(7, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh1xe"]
+atlas = ExtResource("2_aof03")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thws4"]
+atlas = ExtResource("2_aof03")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2toad"]
+atlas = ExtResource("2_aof03")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enga2"]
+atlas = ExtResource("2_aof03")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7i5mp"]
+atlas = ExtResource("2_aof03")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4js0c"]
+atlas = ExtResource("2_aof03")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d1as"]
+atlas = ExtResource("2_aof03")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvq3m"]
+atlas = ExtResource("2_aof03")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m1ro8"]
+atlas = ExtResource("2_aof03")
+region = Rect2(768, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yor33"]
+atlas = ExtResource("2_aof03")
+region = Rect2(864, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xoxay"]
 atlas = ExtResource("1_ofw25")
@@ -109,6 +153,41 @@ region = Rect2(672, 0, 96, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_mh1xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_thws4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2toad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enga2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7i5mp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4js0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d1as")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvq3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m1ro8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yor33")
+}],
+"loop": false,
+"name": &"axe",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xoxay")
 }, {
 "duration": 1.0,
@@ -198,18 +277,34 @@ animations = [{
 "speed": 9.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfpq1"]
-size = Vector2(7, 13)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flfmw"]
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_ryt16")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_2rlj8")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.258276
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_pfpq1")
+
+[node name="Parent" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parent"]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_2rlj8")
+animation = &"axe"
+autoplay = "idle"
+frame = 6
+frame_progress = 0.07
+
+[node name="AxeCollider" type="Area2D" parent="Parent"]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parent/AxeCollider"]
+position = Vector2(24, -2)
+shape = SubResource("RectangleShape2D_flfmw")
+
+[connection signal="animation_finished" from="Parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="frame_changed" from="Parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
+[connection signal="area_entered" from="Parent/AxeCollider" to="." method="_on_axe_collider_area_entered"]

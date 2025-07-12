@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://clyhh8p3lxx8l"]
+[gd_scene load_steps=34 format=3 uid="uid://clyhh8p3lxx8l"]
 
 [ext_resource type="Script" path="res://Scripts/seedDecider.gd" id="1_0unc5"]
 [ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="1_lese3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="10_t5v38"]
 [ext_resource type="PackedScene" uid="uid://cryo1p2chq20v" path="res://Scenes/spruce_tree.tscn" id="12_i4lu7"]
 [ext_resource type="Script" path="res://Scripts/scuffedTreeAligner.gd" id="12_n8kbq"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvGUI.gd" id="13_104mp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qqhq6"]
 texture = ExtResource("3_6enen")
@@ -1939,5 +1940,33 @@ script = ExtResource("12_n8kbq")
 script = ExtResource("10_t5v38")
 tile_map_layers = [NodePath("../TileMapLayer2")]
 generator = NodePath("../NoiseGenerator2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("13_104mp")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+custom_minimum_size = Vector2(13.465, 10.67)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 296.0
+grow_horizontal = 2
+
+[node name="Inv" type="GridContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_right = 204.0
+offset_bottom = 288.0
+grow_horizontal = 2
+columns = 4
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="generation_finished" from="NoiseGenerator2" to="TileMapLayer2" method="_on_noise_generator_2_generation_finished"]

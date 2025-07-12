@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://dlh351x1no0ln"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_46ccr"]
+[ext_resource type="Texture2D" uid="uid://bhodbk4d6rd3x" path="res://Assets/Sunnyside_World_Assets/Elements/Crops/wheat_00.png" id="2_uw7hd"]
+
+[resource]
+script = ExtResource("1_46ccr")
+type = 6
+name = "Wheat"
+description = "WHEEEEEEEAT"
+texture = ExtResource("2_uw7hd")
+count = 1

@@ -1906,31 +1906,6 @@ sources/0 = SubResource("TileSetScenesCollectionSource_lkbq8")
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_0unc5")
 
-[node name="GUI" type="CanvasLayer" parent="."]
-visible = false
-script = ExtResource("13_104mp")
-
-[node name="Panel" type="Panel" parent="GUI"]
-custom_minimum_size = Vector2(13.465, 10.67)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 300.0
-offset_bottom = 296.0
-grow_horizontal = 2
-
-[node name="Inv" type="GridContainer" parent="GUI"]
-unique_name_in_owner = true
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -204.0
-offset_right = 204.0
-offset_bottom = 288.0
-grow_horizontal = 2
-columns = 4
-
 [node name="Player" parent="." instance=ExtResource("1_lese3")]
 position = Vector2(896, 643)
 
@@ -1966,5 +1941,30 @@ script = ExtResource("12_n8kbq")
 script = ExtResource("10_t5v38")
 tile_map_layers = [NodePath("../TileMapLayer2")]
 generator = NodePath("../NoiseGenerator2")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("13_104mp")
+
+[node name="Panel" type="Panel" parent="GUI"]
+custom_minimum_size = Vector2(13.465, 10.67)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 296.0
+grow_horizontal = 2
+
+[node name="Inv" type="GridContainer" parent="GUI"]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_right = 204.0
+offset_bottom = 288.0
+grow_horizontal = 2
+columns = 4
 
 [connection signal="generation_finished" from="NoiseGenerator2" to="TileMapLayer2" method="_on_noise_generator_2_generation_finished"]

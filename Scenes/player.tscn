@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://crvil3gpy50r7"]
+[gd_scene load_steps=45 format=3 uid="uid://crvil3gpy50r7"]
 
 [ext_resource type="Texture2D" uid="uid://duskqc5mvditn" path="res://Assets/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="1_ofw25"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ryt16"]
@@ -280,6 +280,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_flfmw"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bu4fp"]
+radius = 17.1172
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_ryt16")
@@ -293,10 +296,8 @@ shape = SubResource("RectangleShape2D_pfpq1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parent"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_2rlj8")
-animation = &"axe"
+animation = &"idle"
 autoplay = "idle"
-frame = 6
-frame_progress = 0.07
 
 [node name="AxeCollider" type="Area2D" parent="Parent"]
 monitorable = false
@@ -304,6 +305,11 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Parent/AxeCollider"]
 position = Vector2(24, -2)
 shape = SubResource("RectangleShape2D_flfmw")
+
+[node name="player_pickup_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_pickup_range"]
+shape = SubResource("CircleShape2D_bu4fp")
 
 [connection signal="animation_finished" from="Parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="Parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

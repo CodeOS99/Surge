@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2oyyrum5sltn"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/dropped_inv_item.gd" id="1_151ic"]
+[ext_resource type="Texture2D" uid="uid://ulq4v6eybenm" path="res://Assets/Sunnyside_World_Assets/Elements/Crops/wood.png" id="2_wybey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bmhg"]
+radius = 8.0
+
+[node name="dropped_inv_item" type="StaticBody2D"]
+script = ExtResource("1_151ic")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wybey")
+
+[node name="dropped_item_pickup_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dropped_item_pickup_range"]
+shape = SubResource("CircleShape2D_7bmhg")
+
+[connection signal="area_entered" from="dropped_item_pickup_range" to="." method="_on_area_2d_area_entered"]

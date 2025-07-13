@@ -1,7 +1,10 @@
-class_name InvItem
+class_name InvItemClass
 extends TextureRect
 
 @export var data: InvItemData
+
+var dropped_inv_item = preload("res://Scenes/dropped_inv_item.tscn")
+
 var count_label: Label
 
 func init(d: InvItemData) -> void:
@@ -34,6 +37,21 @@ func make_drag_preview(at_position: Vector2):
 	
 	return c
 
-func increment_count(n: int) :
+func change_count(n: int):
 	data.count += n
+	
+	if data.count <= 0:
+		var dropped = dropped_inv_item.instantiate()
+		dropped.position = Globals.player.global_position
+		dropped.init(data)
+		get_window().add_child(dropped)
+		dropped.change_count(1-dropped.data.count)
+		
+		self.queue_free()
+	
 	count_label.text = str(data.count)
+	
+func drop(should_drop_all: bool):
+	if not should_drop_all:
+		self.global_position = Globals.player.global_position
+		change_count(-1)

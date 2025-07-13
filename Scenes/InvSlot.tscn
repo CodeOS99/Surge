@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3036ecsy7rhp"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvSlot.gd" id="1_2v2n8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l2wq3"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 0.603922)
+
+[node name="InvSlot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l2wq3")
+script = ExtResource("1_2v2n8")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

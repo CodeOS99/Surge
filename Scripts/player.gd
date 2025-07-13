@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+@onready var spruce_log_data = preload("res://Scripts/InvScripts/InvItems/spruce_log.tres")
+@onready var drop_item = preload("res://Scenes/dropped_inv_item.tscn")
+@onready var player_pickup_range = $player_pickup_range
+
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
 
@@ -9,10 +13,22 @@ var child_parent: Node2D # Parent of everything so that it can be flipped
 
 var can_move: bool = true
 
+var can_pickup:bool = false
+var pickup_obj: dropped_inv_item
+
+func _enter_tree() -> void:
+	Globals.player = self
+
 func _ready() -> void:
 	ANIMATED_SPRITE = $Parent/AnimatedSprite2D
 	axe_collider = $Parent/AxeCollider
 	child_parent = $Parent
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("pickup"):
+		for area in player_pickup_range.get_overlapping_areas():
+			if area.name == 'dropped_item_pickup_range':
+				Globals.invGUI.add_item(area.get_parent())
 
 func _physics_process(delta: float) -> void:
 	handleMovement()
@@ -69,4 +85,8 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 
 func _on_axe_collider_area_entered(area: Area2D) -> void:
 	if area.name == "TreeCollider":
+		var log_inv_item = drop_item.instantiate()
+		log_inv_item.init(spruce_log_data.duplicate())
+		get_window().call_deferred("add_child", log_inv_item)
+		log_inv_item.global_position = area.get_parent().global_position
 		area.get_parent().queue_free()

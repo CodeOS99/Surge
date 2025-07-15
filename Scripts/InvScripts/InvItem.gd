@@ -1,8 +1,6 @@
 class_name InvItemClass
 extends TextureRect
 
-signal drag_started
-
 @export var data: InvItemData
 
 var dropped_inv_item = preload("res://Scenes/dropped_inv_item.tscn")
@@ -32,27 +30,18 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 			drag_data_item = InvItemClass.new() # InvItemNode is preloaded in InvGUI
 			drag_data_item.init(single_item_data)
 			get_parent().add_child(drag_data_item)
-			drag_data_item.get_parent() # This is needed for the drag preview to work correctly sometimes
 
 			set_drag_preview(make_drag_preview(at_position, 1))
 
 			# Reduce the count of the original item
 			change_count(-1, false) # Pass false to prevent dropping a physical item when dragging one out
-			if get_parent().slotT == "craft" and self.data.count == 1: # magic word but its 10:11 so idc
-				var n = InvItemData.new()
-				n.type = InvItemData.Type.NONE
-				n.name = "none"
-				get_parent().recipe_changed.emit(get_parent().idx, n)
+			print(get_parent().slotT)
 
 			return drag_data_item
 	elif Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		# Left-click: Drag the entire stack
 		set_drag_preview(make_drag_preview(at_position, data.count))
-		if get_parent().slotT == "craft": # magic word but its 10:11 so idc
-			var n = InvItemData.new()
-			n.type = InvItemData.Type.NONE
-			n.name = "none"
-			get_parent().recipe_changed.emit(get_parent().idx, n)
+
 		# Important: Don't remove the item from its parent immediately.
 		# This will be handled in _drop_data of the target slot.
 		return self

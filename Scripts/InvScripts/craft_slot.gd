@@ -1,7 +1,5 @@
-class_name Craft_Slot
+class_name craft_Slot
 extends PanelContainer
-
-signal recipe_changed(idx, newData)
 
 @export var type: InvItemData.Type # This `type` variable isn't used in CraftSlot's _can_drop_data logic. Consider if it's necessary here.
 
@@ -43,7 +41,6 @@ func _drop_data(at_position: Vector2, invItem: Variant) -> void:
 			if invItem.data.count == 1 and invItem.get_parent() == null: # It's a single item from a right-click drag
 				curr_item.change_count(invItem.data.count) # Add 1 back to the original stack
 				invItem.queue_free() # Delete the dragged single item instance
-				recipe_changed.emit(self.idx, curr_item.data)
 				return
 			else: # Full stack drag or simply moved around but not merged
 				return # Do nothing if it's the same item instance and already in the slot
@@ -51,7 +48,6 @@ func _drop_data(at_position: Vector2, invItem: Variant) -> void:
 		if curr_item.data.name == invItem.data.name: # If they're the same item type, stack them
 			curr_item.change_count(invItem.data.count) # Increment the current one by how much is in the second one
 			invItem.queue_free() # Delete the one which is being dragged
-			recipe_changed.emit(self.idx, curr_item.data)
 			return # Don't reparent if stacked
 
 		# If existing item and dragged item are different, swap them
@@ -59,4 +55,13 @@ func _drop_data(at_position: Vector2, invItem: Variant) -> void:
 		curr_item.reparent(invItem.get_parent()) # Place the current item in the dragging item's original slot
 	invItem.reparent(self) # Place the dragged item in this slot
 
-	recipe_changed.emit(self.idx, get_child(0).data if get_child_count() > 0 else null)
+
+func _on_mouse_entered() -> void:
+	var style:StyleBoxFlat = StyleBoxFlat.new()
+	style.bg_color = Color(0.5, 0.5, 0.5, 1)
+	add_theme_stylebox_override ("panel", style)
+
+func _on_mouse_exited() -> void:
+	var style:StyleBoxFlat = StyleBoxFlat.new()
+	style.bg_color = Color(0.1, 0.5, 0.5, 0.6)
+	add_theme_stylebox_override ("panel", style)

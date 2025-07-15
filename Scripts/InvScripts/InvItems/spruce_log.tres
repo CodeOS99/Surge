@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://cfkr625klghc3"]
+[gd_resource type="Resource" script_class="InvItemData" load_steps=4 format=3 uid="uid://cfkr625klghc3"]
 
+[ext_resource type="PackedScene" uid="uid://uncbx0fpy2kp" path="res://Scenes/Placeables/placeable_sapling.tscn" id="1_serkp"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_vnfsa"]
 [ext_resource type="Texture2D" uid="uid://ulq4v6eybenm" path="res://Assets/Sunnyside_World_Assets/Elements/Crops/wood.png" id="2_76dly"]
 
@@ -10,3 +11,5 @@ name = "Log"
 description = "log_8 8 = 1"
 texture = ExtResource("2_76dly")
 count = 1
+buildable = true
+building = ExtResource("1_serkp")

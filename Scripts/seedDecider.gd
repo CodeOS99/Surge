@@ -9,3 +9,7 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	pass # Replace with function body.
+
+
+func _on_held_item_mouse_entered() -> void:
+	pass # Replace with function body.

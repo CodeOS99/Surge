@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://uncbx0fpy2kp"]
+
+[ext_resource type="Texture2D" uid="uid://bbppol8g62e1i" path="res://Assets/Sunnyside_World_Assets/UI/plan alt.png" id="1_4su8d"]
+[ext_resource type="Script" path="res://Scripts/PlaceableScripts/placeable_sapling.gd" id="1_axo5e"]
+[ext_resource type="Texture2D" uid="uid://kt0gvwgdygoj" path="res://Assets/Sunnyside_World_Assets/UI/cancel.png" id="3_7t626"]
+[ext_resource type="Texture2D" uid="uid://kvfwmicdlw1m" path="res://Assets/Sunnyside_World_Assets/UI/confirm.png" id="4_7auyv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_peggr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4su8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1cfju"]
+radius = 8.0
+
+[node name="PlaceableSapling" type="StaticBody2D"]
+position = Vector2(128, 0)
+script = ExtResource("1_axo5e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.501961)
+sprite_frames = SubResource("SpriteFrames_peggr")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="." groups=["buildingColliders"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_1cfju")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -24.0
+offset_right = 49.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 12
+text = "I... AM PLACED!"
+
+[node name="Cancel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_7t626")
+
+[node name="Confirm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_7auyv")

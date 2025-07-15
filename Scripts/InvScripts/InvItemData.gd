@@ -8,3 +8,5 @@ enum Type  {HELMET, BREASTPLATE, LEGGINGS, BOOTS, SWORD, ACCESSORY, MAIN, NONE}
 @export_multiline var description: String
 @export var texture: Texture2D
 @export var count: int = 1
+@export var buildable: bool = false
+@export var building: PackedScene = null # It should have an animated sprite with default name

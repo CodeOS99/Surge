@@ -16,6 +16,8 @@ var can_move: bool = true
 var can_pickup:bool = false
 var pickup_obj: dropped_inv_item
 
+var dir: int = 1
+
 func _enter_tree() -> void:
 	Globals.player = self
 
@@ -57,8 +59,10 @@ func handleMovement():
 		# Flip
 		if input_vector.x < 0:
 			child_parent.scale.x = -abs(child_parent.scale.x)
+			dir = -1
 		else:
 			child_parent.scale.x = abs(child_parent.scale.x)
+			dir = 1
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, WALK_SPEED)
 		if ANIMATED_SPRITE.animation != "idle":

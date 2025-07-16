@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 				currentSpawned.queue_free()
 	
 	if Input.is_action_just_pressed("build"):
-		if currentSpawned:
+		if is_instance_valid(currentSpawned):
 			if currentSpawned.place(): # was successful
 				get_child(0).change_count(-1, false)
 				if get_child_count() > 0:

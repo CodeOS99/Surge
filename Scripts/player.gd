@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var spruce_log_data = preload("res://Scripts/InvScripts/InvItems/spruce_log.tres")
 @onready var drop_item = preload("res://Scenes/dropped_inv_item.tscn")
 @onready var player_pickup_range = $player_pickup_range
+@onready var cam = $Camera2D
+@onready var summonLabel = $SummonLabel
 
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
@@ -18,6 +20,8 @@ var pickup_obj: dropped_inv_item
 
 var dir: int = 1
 
+var is_in_cutscene: bool = false
+
 func _enter_tree() -> void:
 	Globals.player = self
 
@@ -27,15 +31,17 @@ func _ready() -> void:
 	child_parent = $Parent
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("pickup"):
-		for area in player_pickup_range.get_overlapping_areas():
-			if area.name == 'dropped_item_pickup_range':
-				Globals.invGUI.add_item(area.get_parent())
+	if not is_in_cutscene:
+		if Input.is_action_pressed("pickup"):
+			for area in player_pickup_range.get_overlapping_areas():
+				if area.name == 'dropped_item_pickup_range':
+					Globals.invGUI.add_item(area.get_parent())
 
 func _physics_process(delta: float) -> void:
-	handleMovement()
-	handleAxe()
-	move_and_slide()
+	if not is_in_cutscene:
+		handleMovement()
+		handleAxe()
+		move_and_slide()
 
 func handleMovement():
 	if not can_move: # If the player can't move, eg. axe
@@ -94,3 +100,10 @@ func _on_axe_collider_area_entered(area: Area2D) -> void:
 		get_window().call_deferred("add_child", log_inv_item)
 		log_inv_item.global_position = area.get_parent().global_position
 		area.get_parent().queue_free()
+
+func get_in_battle():
+	is_in_cutscene = true
+	ANIMATED_SPRITE.play("battleArenaTransfer")
+	cam.scale = Vector2(10, 10)
+	summonLabel.visible = true
+	cam.apply_shake(0.0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://clyhh8p3lxx8l"]
+[gd_scene load_steps=44 format=3 uid="uid://clyhh8p3lxx8l"]
 
 [ext_resource type="Script" path="res://Scripts/seedDecider.gd" id="1_0unc5"]
 [ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="1_lese3"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://cryo1p2chq20v" path="res://Scenes/spruce_tree.tscn" id="12_i4lu7"]
 [ext_resource type="Script" path="res://Scripts/scuffedTreeAligner.gd" id="12_n8kbq"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/InvGUI.gd" id="13_104mp"]
+[ext_resource type="Script" path="res://Scripts/day_night_modulate.gd" id="22_tajt3"]
+[ext_resource type="Texture2D" uid="uid://c7r1ttehvk8nk" path="res://Scripts/daynightcycle/daynightcycle-gradient-texture.tres" id="23_56oaf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qqhq6"]
 texture = ExtResource("3_6enen")
@@ -1977,9 +1979,6 @@ script = ExtResource("10_32ms2")
 [node name="Player" parent="." instance=ExtResource("1_lese3")]
 position = Vector2(896, 643)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(3, 3)
-
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_5w8dt")
 
@@ -2008,6 +2007,10 @@ script = ExtResource("12_n8kbq")
 script = ExtResource("10_t5v38")
 tile_map_layers = [NodePath("../TileMapLayer2")]
 generator = NodePath("../NoiseGenerator2")
+
+[node name="DayNightModulate" type="CanvasModulate" parent="."]
+script = ExtResource("22_tajt3")
+gradient = ExtResource("23_56oaf")
 
 [connection signal="pressed" from="GUI/Panel/GridContainer/VBoxContainer/CraftButton" to="GUI" method="_on_button_pressed"]
 [connection signal="mouse_entered" from="GUI/Panel/GridContainer/HeldItem" to="GUI/Panel/GridContainer/HeldItem" method="_on_mouse_entered"]

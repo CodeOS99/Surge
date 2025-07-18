@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://crvil3gpy50r7"]
+[gd_scene load_steps=70 format=3 uid="uid://crvil3gpy50r7"]
 
 [ext_resource type="Texture2D" uid="uid://duskqc5mvditn" path="res://Assets/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="1_ofw25"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ryt16"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxdgi36ow5lxw" path="res://Assets/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="2_du0tt"]
 [ext_resource type="Texture2D" uid="uid://dny08pfq4ys5k" path="res://Assets/Sunnyside_World_Assets/Characters/Human/WALKING/base_walk_strip8.png" id="3_twh8s"]
 [ext_resource type="Texture2D" uid="uid://i1spxx50s8fy" path="res://Assets/Sunnyside_World_Assets/Characters/Human/DEATH/base_death_strip13.png" id="4_hoj4x"]
+[ext_resource type="Texture2D" uid="uid://btsmoblcxysjy" path="res://Assets/Sunnyside_World_Assets/Characters/Human/HURT/base_hurt_strip8.png" id="4_skpox"]
 [ext_resource type="Script" path="res://Scripts/player_cam_script.gd" id="7_gjie6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfpq1"]
@@ -102,6 +103,38 @@ region = Rect2(1056, 0, 96, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_vj02e"]
 atlas = ExtResource("4_hoj4x")
 region = Rect2(1152, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8reai"]
+atlas = ExtResource("4_skpox")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wiasw"]
+atlas = ExtResource("4_skpox")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0cu5"]
+atlas = ExtResource("4_skpox")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niqi3"]
+atlas = ExtResource("4_skpox")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgtfb"]
+atlas = ExtResource("4_skpox")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o87to"]
+atlas = ExtResource("4_skpox")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2j6dc"]
+atlas = ExtResource("4_skpox")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhg55"]
+atlas = ExtResource("4_skpox")
+region = Rect2(672, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xoxay"]
 atlas = ExtResource("1_ofw25")
@@ -286,6 +319,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_8reai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wiasw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0cu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niqi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgtfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o87to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2j6dc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhg55")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_xoxay")
 }, {
 "duration": 1.0,
@@ -381,6 +443,9 @@ size = Vector2(16, 16)
 [sub_resource type="CircleShape2D" id="CircleShape2D_bu4fp"]
 radius = 17.1172
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybn1b"]
+bg_color = Color(1, 0.346577, 0.280009, 1)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 script = ExtResource("1_ryt16")
@@ -394,8 +459,10 @@ shape = SubResource("RectangleShape2D_pfpq1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parent"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_2rlj8")
-animation = &"battleArenaTransfer"
+animation = &"hurt"
 autoplay = "idle"
+frame = 7
+frame_progress = 1.0
 
 [node name="AxeCollider" type="Area2D" parent="Parent"]
 monitorable = false
@@ -420,6 +487,18 @@ offset_top = 4.0
 offset_right = 48.0
 offset_bottom = 27.0
 text = "SUMMON!"
+
+[node name="healthBar" type="ProgressBar" parent="."]
+z_index = 100
+offset_left = -36.0
+offset_top = -27.0
+offset_right = 39.0
+offset_bottom = -11.0
+theme_override_font_sizes/font_size = 8
+theme_override_styles/fill = SubResource("StyleBoxFlat_ybn1b")
+step = 1.0
+value = 100.0
+allow_greater = true
 
 [connection signal="animation_finished" from="Parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="Parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var player_pickup_range = $player_pickup_range
 @onready var cam = $Camera2D
 @onready var summonLabel = $SummonLabel
+@onready var health_bar = $healthBar
 
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
@@ -21,6 +22,8 @@ var pickup_obj: dropped_inv_item
 var dir: int = 1
 
 var is_in_cutscene: bool = false
+
+var health: int = 100
 
 func _enter_tree() -> void:
 	Globals.player = self
@@ -80,7 +83,7 @@ func handleAxe():
 		can_move = false # stop player's
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if ANIMATED_SPRITE.animation == 'axe': # allow movement again
+	if ANIMATED_SPRITE.animation in ['axe', 'hurt']: # allow movement again
 		can_move = true
 		ANIMATED_SPRITE.play("idle")
 
@@ -104,6 +107,26 @@ func _on_axe_collider_area_entered(area: Area2D) -> void:
 func get_in_battle():
 	is_in_cutscene = true
 	ANIMATED_SPRITE.play("battleArenaTransfer")
-	cam.scale = Vector2(10, 10)
+	cam.zoom = Vector2(10, 10)
 	summonLabel.visible = true
 	cam.apply_shake(0.0)
+	
+	var t := Timer.new()
+	add_child(t)
+	t.wait_time = 3.0
+	t.one_shot = true
+	t.start()
+	t.timeout.connect(goToSoulYard)
+
+func goToSoulYard():
+	get_tree().change_scene_to_file("res://Scenes/soulyard.tscn")
+
+func takeDamage(n: int):
+	if ANIMATED_SPRITE.animation != "hurt":
+		health += n
+		if health <= 0:
+			print("dead!!!!")
+		health_bar.value = health
+		if n < 0:
+			ANIMATED_SPRITE.play("hurt")
+			can_move = false

@@ -1,26 +1,18 @@
-[gd_scene load_steps=44 format=3 uid="uid://clyhh8p3lxx8l"]
+[gd_scene load_steps=36 format=3 uid="uid://clyhh8p3lxx8l"]
 
 [ext_resource type="Script" path="res://Scripts/seedDecider.gd" id="1_0unc5"]
 [ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="1_lese3"]
-[ext_resource type="PackedScene" uid="uid://7d8mveagi1ej" path="res://Scenes/craft_preview.tscn" id="3_1ldx3"]
+[ext_resource type="PackedScene" uid="uid://ch28e8fdrmv67" path="res://Scenes/inv_gui.tscn" id="2_36rmb"]
 [ext_resource type="Texture2D" uid="uid://btpw3lv3lca6i" path="res://Assets/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="3_6enen"]
-[ext_resource type="Script" path="res://Scripts/Invscripts/craft_grid.gd" id="3_ccwul"]
 [ext_resource type="Script" path="res://addons/gaea/others/falloff_map.gd" id="5_1hc6d"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="5_jo8bf"]
-[ext_resource type="Script" path="res://Scripts/Invscripts/craft_preview.gd" id="5_qcoto"]
-[ext_resource type="Script" path="res://Scripts/InvScripts/CraftingRecipe.gd" id="6_e1u00"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="6_n54m7"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="7_b2d8u"]
-[ext_resource type="Resource" uid="uid://dfuui28nhj0xl" path="res://Scripts/InvScripts/Crafting_Recipes/TestRecipe.tres" id="7_ch51p"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="8_ooe1x"]
-[ext_resource type="Resource" uid="uid://vlsxpfatjeba" path="res://Scripts/InvScripts/Crafting_Recipes/gigaTestRecipe.tres" id="8_yktjn"]
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="9_3e8vy"]
-[ext_resource type="Resource" uid="uid://34wie4e8www" path="res://Scripts/InvScripts/Crafting_Recipes/BiggerTestRecipe.tres" id="9_4n4lf"]
-[ext_resource type="Script" path="res://Scripts/InvScripts/held_item.gd" id="10_32ms2"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="10_t5v38"]
 [ext_resource type="PackedScene" uid="uid://cryo1p2chq20v" path="res://Scenes/spruce_tree.tscn" id="12_i4lu7"]
 [ext_resource type="Script" path="res://Scripts/scuffedTreeAligner.gd" id="12_n8kbq"]
-[ext_resource type="Script" path="res://Scripts/InvScripts/InvGUI.gd" id="13_104mp"]
 [ext_resource type="Script" path="res://Scripts/day_night_modulate.gd" id="22_tajt3"]
 [ext_resource type="Texture2D" uid="uid://c7r1ttehvk8nk" path="res://Scripts/daynightcycle/daynightcycle-gradient-texture.tres" id="23_56oaf"]
 
@@ -1916,65 +1908,7 @@ sources/0 = SubResource("TileSetScenesCollectionSource_lkbq8")
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_0unc5")
 
-[node name="GUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("craftPreviewPanelContainer", "crafting_ui_node")]
-script = ExtResource("13_104mp")
-craftPreviewPanelContainer = NodePath("Panel/GridContainer/VBoxContainer/CraftPreview")
-crafting_ui_node = NodePath("Panel/GridContainer/VBoxContainer/CraftPreview")
-
-[node name="Panel" type="Panel" parent="GUI"]
-custom_minimum_size = Vector2(13.465, 10.67)
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 348.0
-offset_bottom = 320.0
-grow_horizontal = 2
-
-[node name="GridContainer" type="GridContainer" parent="GUI/Panel"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/h_separation = 50
-columns = 3
-
-[node name="Inv" type="GridContainer" parent="GUI/Panel/GridContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Panel/GridContainer"]
-layout_mode = 2
-
-[node name="CraftGrid" type="GridContainer" parent="GUI/Panel/GridContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-columns = 3
-script = ExtResource("3_ccwul")
-
-[node name="CraftButton" type="Button" parent="GUI/Panel/GridContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Craft"
-
-[node name="CraftPreview" parent="GUI/Panel/GridContainer/VBoxContainer" instance=ExtResource("3_1ldx3")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("5_qcoto")
-all_crafting_recipes = Array[ExtResource("6_e1u00")]([ExtResource("7_ch51p"), ExtResource("8_yktjn"), ExtResource("9_4n4lf")])
-
-[node name="TextureRect" type="TextureRect" parent="GUI/Panel/GridContainer/VBoxContainer/CraftPreview"]
-layout_mode = 2
-
-[node name="HeldItem" type="PanelContainer" parent="GUI/Panel/GridContainer"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("10_32ms2")
+[node name="GUI" parent="." instance=ExtResource("2_36rmb")]
 
 [node name="Player" parent="." instance=ExtResource("1_lese3")]
 position = Vector2(896, 643)
@@ -2012,7 +1946,4 @@ generator = NodePath("../NoiseGenerator2")
 script = ExtResource("22_tajt3")
 gradient = ExtResource("23_56oaf")
 
-[connection signal="pressed" from="GUI/Panel/GridContainer/VBoxContainer/CraftButton" to="GUI" method="_on_button_pressed"]
-[connection signal="mouse_entered" from="GUI/Panel/GridContainer/HeldItem" to="GUI/Panel/GridContainer/HeldItem" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="GUI/Panel/GridContainer/HeldItem" to="GUI/Panel/GridContainer/HeldItem" method="_on_mouse_exited"]
 [connection signal="generation_finished" from="NoiseGenerator2" to="TileMapLayer2" method="_on_noise_generator_2_generation_finished"]

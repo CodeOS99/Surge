@@ -370,6 +370,7 @@ script = ExtResource("1_17o0f")
 
 [node name="damage_area2" parent="parent" instance=ExtResource("1_aibwo")]
 position = Vector2(-2, -2)
+damage = -5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parent/damage_area2"]
 position = Vector2(3, 0)

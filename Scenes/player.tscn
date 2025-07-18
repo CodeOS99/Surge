@@ -459,10 +459,9 @@ shape = SubResource("RectangleShape2D_pfpq1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parent"]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_2rlj8")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.306397
 
 [node name="AxeCollider" type="Area2D" parent="Parent"]
 monitorable = false

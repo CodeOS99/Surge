@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $parent/AnimatedSprite2D
 @onready var damage_area = $parent/damage_area
 
-var speed:int = 50
+var speed:int = 75
 var canMove:bool = true
 var reboundWaitTime: float = 0.5
 
@@ -43,7 +43,7 @@ func makeNormalAfterRebound():
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if animated_sprite:
-		if animated_sprite.animation == "attack" and animated_sprite.frame in [4, 5, 6]:
+		if animated_sprite.animation == "attack" and animated_sprite.frame in [5, 6]:
 			damage_area.monitoring = true
 		else:
 			damage_area.monitoring = false

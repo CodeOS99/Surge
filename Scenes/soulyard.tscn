@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ch28e8fdrmv67" path="res://Scenes/inv_gui.tscn" id="1_djyvb"]
 [ext_resource type="Texture2D" uid="uid://btpw3lv3lca6i" path="res://Assets/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="1_j40rx"]
 [ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="2_8g5d2"]
-[ext_resource type="PackedScene" uid="uid://dcs1oqh4xssgj" path="res://Scenes/skeleton_enemy.tscn" id="4_x05tu"]
+[ext_resource type="PackedScene" uid="uid://c6152m4qna1rd" path="res://Scenes/zombie_enemy.tscn" id="4_yquf3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rsogm"]
 texture = ExtResource("1_j40rx")
@@ -3539,5 +3539,5 @@ tile_set = SubResource("TileSet_djrq3")
 [node name="Player" parent="." instance=ExtResource("2_8g5d2")]
 position = Vector2(56, 40)
 
-[node name="skeleton_enemy" parent="." instance=ExtResource("4_x05tu")]
-position = Vector2(224, 88)
+[node name="zombie_enemy" parent="." instance=ExtResource("4_yquf3")]
+position = Vector2(72, 88)

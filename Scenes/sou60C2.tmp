@@ -3545,6 +3545,3 @@ tile_set = SubResource("TileSet_djrq3")
 
 [node name="Player" parent="." instance=ExtResource("2_8g5d2")]
 position = Vector2(56, 40)
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(616, 352)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dcs1oqh4xssgj"]
+[gd_scene load_steps=51 format=3 uid="uid://dcs1oqh4xssgj"]
 
 [ext_resource type="Texture2D" uid="uid://bfg6mnfn58t2b" path="res://Assets/Sunnyside_World_Assets/Characters/Skeleton/PNG/skeleton_attack_strip7.png" id="1_gfki2"]
 [ext_resource type="Script" path="res://Scripts/skeleton_enemy.gd" id="1_pqqwj"]
@@ -338,10 +338,13 @@ animations = [{
 radius = 44.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wwwru"]
-radius = 7.0
+height = 34.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dha5b"]
 radius = 43.0116
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8yxt"]
+radius = 7.0
 
 [node name="skeleton_enemy" type="CharacterBody2D"]
 script = ExtResource("1_pqqwj")
@@ -375,6 +378,19 @@ shape = SubResource("CapsuleShape2D_wwwru")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parent/attackRange"]
 shape = SubResource("CircleShape2D_dha5b")
+
+[node name="healthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = -37.0
+offset_right = 39.0
+offset_bottom = -14.0
+theme_override_font_sizes/font_size = 10
+step = 1.0
+value = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_m8yxt")
 
 [connection signal="animation_finished" from="parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

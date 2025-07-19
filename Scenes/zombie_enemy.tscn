@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://c6152m4qna1rd"]
+[gd_scene load_steps=51 format=3 uid="uid://c6152m4qna1rd"]
 
 [ext_resource type="PackedScene" uid="uid://c0wfm67vpd4gq" path="res://Scenes/damage_area.tscn" id="1_4och8"]
 [ext_resource type="Script" path="res://Scripts/zombie_enemy.gd" id="1_rk84u"]
@@ -330,11 +330,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dtxkc"]
-radius = 6.0
-height = 26.0
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8l5cs"]
 radius = 36.0139
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_88n75"]
+radius = 6.0
+height = 28.0
 
 [node name="zombie_enemy" type="CharacterBody2D"]
 script = ExtResource("1_rk84u")
@@ -368,6 +371,19 @@ shape = SubResource("CapsuleShape2D_dtxkc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parent/attackRange"]
 position = Vector2(1, -1)
 shape = SubResource("CircleShape2D_8l5cs")
+
+[node name="healthBar" type="ProgressBar" parent="."]
+offset_left = -25.0
+offset_top = -37.0
+offset_right = 39.0
+offset_bottom = -14.0
+theme_override_font_sizes/font_size = 10
+step = 1.0
+value = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -2)
+shape = SubResource("CapsuleShape2D_88n75")
 
 [connection signal="animation_finished" from="parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

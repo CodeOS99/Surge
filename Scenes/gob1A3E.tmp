@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://difwb74y13n2j"]
+[gd_scene load_steps=54 format=3 uid="uid://difwb74y13n2j"]
 
 [ext_resource type="Script" path="res://Scripts/goblin_enemy.gd" id="1_17o0f"]
 [ext_resource type="PackedScene" uid="uid://c0wfm67vpd4gq" path="res://Scenes/damage_area.tscn" id="1_aibwo"]
@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://coxopproj8an5" path="res://Assets/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_hurt_strip8.png" id="3_iklc0"]
 [ext_resource type="Texture2D" uid="uid://b2ea3xftfa07i" path="res://Assets/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_idle_strip9.png" id="4_3k4uc"]
 [ext_resource type="Texture2D" uid="uid://dosn5tt4gucj5" path="res://Assets/Sunnyside_World_Assets/Characters/Goblin/PNG/spr_run_strip8.png" id="5_u6owl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lvpy"]
+radius = 7.0
+height = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrrg7"]
 radius = 34.1321
@@ -356,21 +360,21 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7lvpy"]
-radius = 12.0
-height = 32.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_kqivw"]
 radius = 33.1361
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qc0e4"]
-radius = 8.0
-height = 22.0
 
 [node name="goblin_enemy" type="CharacterBody2D"]
 script = ExtResource("1_17o0f")
 
 [node name="parent" type="Node2D" parent="."]
+
+[node name="damage_area2" parent="parent" instance=ExtResource("1_aibwo")]
+position = Vector2(-2, -2)
+damage = -5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parent/damage_area2"]
+position = Vector2(3, 0)
+shape = SubResource("CapsuleShape2D_7lvpy")
 
 [node name="damage_area" parent="parent" instance=ExtResource("1_aibwo")]
 damage = -5
@@ -386,31 +390,10 @@ sprite_frames = SubResource("SpriteFrames_nti88")
 animation = &"walk"
 autoplay = "walk"
 
-[node name="damage_area2" parent="parent" instance=ExtResource("1_aibwo")]
-position = Vector2(-2, -2)
-damage = -5
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="parent/damage_area2"]
-position = Vector2(3, 0)
-shape = SubResource("CapsuleShape2D_7lvpy")
-
 [node name="attackRange" type="Area2D" parent="parent"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="parent/attackRange"]
 shape = SubResource("CircleShape2D_kqivw")
-
-[node name="healthBar" type="ProgressBar" parent="."]
-offset_left = -25.0
-offset_top = -37.0
-offset_right = 39.0
-offset_bottom = -14.0
-theme_override_font_sizes/font_size = 10
-step = 1.0
-value = 100.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -1)
-shape = SubResource("CapsuleShape2D_qc0e4")
 
 [connection signal="animation_finished" from="parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="frame_changed" from="parent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch28e8fdrmv67"]
+[gd_scene load_steps=11 format=3 uid="uid://ch28e8fdrmv67"]
 
 [ext_resource type="Script" path="res://Scripts/InvScripts/InvGUI.gd" id="1_gybri"]
 [ext_resource type="Script" path="res://Scripts/Invscripts/craft_grid.gd" id="2_41dg5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://vlsxpfatjeba" path="res://Scripts/InvScripts/Crafting_Recipes/gigaTestRecipe.tres" id="7_hu5it"]
 [ext_resource type="Resource" uid="uid://34wie4e8www" path="res://Scripts/InvScripts/Crafting_Recipes/BiggerTestRecipe.tres" id="8_iso6l"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/held_item.gd" id="9_xi7s3"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/current_weapon.gd" id="10_0higf"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("craftPreviewPanelContainer", "crafting_ui_node")]
 script = ExtResource("1_gybri")
@@ -21,7 +22,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
-offset_right = 348.0
+offset_right = 408.0
 offset_bottom = 320.0
 grow_horizontal = 2
 
@@ -29,8 +30,8 @@ grow_horizontal = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/h_separation = 50
-columns = 3
+theme_override_constants/h_separation = 25
+columns = 4
 
 [node name="Inv" type="GridContainer" parent="Panel/GridContainer"]
 unique_name_in_owner = true
@@ -69,6 +70,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("9_xi7s3")
+
+[node name="CurrentWeapon" type="PanelContainer" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("10_0higf")
 
 [connection signal="pressed" from="Panel/GridContainer/VBoxContainer/CraftButton" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="Panel/GridContainer/HeldItem" to="Panel/GridContainer/HeldItem" method="_on_mouse_entered"]

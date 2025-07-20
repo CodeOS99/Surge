@@ -6,6 +6,10 @@ extends CharacterBody2D
 @onready var cam = $Camera2D
 @onready var summonLabel = $SummonLabel
 @onready var health_bar = $healthBar
+@onready var weapon_collider = $Parent/weaponCollider
+@onready var returnLabel = $ReturnLabel
+
+@export var currInvGUI: InvGUI
 
 const WALK_SPEED = 100.0
 const RUN_SPEED = 200.0
@@ -25,6 +29,11 @@ var is_in_cutscene: bool = false
 
 var health: int = 100
 
+var initStrength = 100
+var strengthBuffs = {
+	"weapon": 0
+}
+
 func _enter_tree() -> void:
 	Globals.player = self
 
@@ -39,12 +48,27 @@ func _process(delta: float) -> void:
 			for area in player_pickup_range.get_overlapping_areas():
 				if area.name == 'dropped_item_pickup_range':
 					Globals.invGUI.add_item(area.get_parent())
+		
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+			attack()
+
+func attack():
+	var strength = calcStrength()
+	ANIMATED_SPRITE.play("attack")
+	can_move = false
+
+func calcStrength():
+	var _str = initStrength
+	for key in strengthBuffs:
+		_str += strengthBuffs[key]
+	
+	return _str
 
 func _physics_process(delta: float) -> void:
 	if not is_in_cutscene:
 		handleMovement()
 		handleAxe()
-		move_and_slide()
+		move_and_collide(velocity * delta)
 
 func handleMovement():
 	if not can_move: # If the player can't move, eg. axe
@@ -83,7 +107,7 @@ func handleAxe():
 		can_move = false # stop player's
 
 func _on_animated_sprite_2d_animation_finished() -> void:
-	if ANIMATED_SPRITE.animation in ['axe', 'hurt']: # allow movement again
+	if ANIMATED_SPRITE.animation in ['axe', 'hurt', 'attack']: # allow movement again
 		can_move = true
 		ANIMATED_SPRITE.play("idle")
 
@@ -93,8 +117,11 @@ func _on_animated_sprite_2d_frame_changed() -> void:
 
 	if ANIMATED_SPRITE.animation == "axe" and ANIMATED_SPRITE.frame in [5, 6, 7]:
 		axe_collider.monitoring = true
+	elif ANIMATED_SPRITE.animation == "attack" and ANIMATED_SPRITE.frame in [4, 5, 6]:
+		weapon_collider.monitoring = true
 	else:
 		axe_collider.monitoring = false
+		weapon_collider.monitoring = false
 
 func _on_axe_collider_area_entered(area: Area2D) -> void:
 	if area.name == "TreeCollider":
@@ -119,7 +146,7 @@ func get_in_battle():
 	t.timeout.connect(goToSoulYard)
 
 func goToSoulYard():
-	get_tree().change_scene_to_file("res://Scenes/soulyard.tscn")
+	Globals.transition_to_scene(get_tree(), "res://Scenes/soulyard.tscn")
 
 func takeDamage(n: int):
 	if ANIMATED_SPRITE.animation != "hurt":
@@ -130,3 +157,25 @@ func takeDamage(n: int):
 		if n < 0:
 			ANIMATED_SPRITE.play("hurt")
 			can_move = false
+
+func _on_weapon_collider_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy_bodies"):
+		body.change_health(-calcStrength())
+
+func transition_back():
+	is_in_cutscene = true
+	ANIMATED_SPRITE.play("battleArenaTransfer")
+	cam.zoom = Vector2(10, 10)
+	returnLabel.visible = true
+	cam.apply_shake(0.0)
+	
+	var t := Timer.new()
+	add_child(t)
+	t.wait_time = 3.0
+	t.one_shot = true
+	t.start()
+	t.timeout.connect(returnFromSoulyard)
+
+func returnFromSoulyard():
+	Globals.time = 0
+	Globals.transition_to_scene(get_tree(), "res://Scenes/main_game.tscn")

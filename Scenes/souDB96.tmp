@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://buakvxlft10ku"]
+[gd_scene load_steps=12 format=4 uid="uid://buakvxlft10ku"]
 
 [ext_resource type="Script" path="res://Scripts/soulyard.gd" id="1_amy04"]
+[ext_resource type="PackedScene" uid="uid://ch28e8fdrmv67" path="res://Scenes/inv_gui.tscn" id="1_djyvb"]
 [ext_resource type="Texture2D" uid="uid://btpw3lv3lca6i" path="res://Assets/Sunnyside_World_Assets/Tileset/spr_tileset_sunnysideworld_16px.png" id="1_j40rx"]
 [ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="2_8g5d2"]
 [ext_resource type="PackedScene" uid="uid://dcs1oqh4xssgj" path="res://Scenes/skeleton_enemy.tscn" id="4_x05tu"]
@@ -3529,6 +3530,9 @@ offset_right = 1144.0
 offset_bottom = 1176.0
 color = Color(0, 0, 0, 1)
 
+[node name="GUI" parent="." instance=ExtResource("1_djyvb")]
+visible = false
+
 [node name="props" type="TileMapLayer" parent="."]
 
 [node name="Floor" type="TileMapLayer" parent="."]
@@ -3543,3 +3547,4 @@ tile_set = SubResource("TileSet_djrq3")
 position = Vector2(56, 40)
 
 [node name="enemies" type="Node2D" parent="."]
+position = Vector2(616, 352)

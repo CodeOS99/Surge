@@ -367,7 +367,7 @@ radius = 33.1361
 radius = 8.0
 height = 22.0
 
-[node name="goblin_enemy" type="CharacterBody2D"]
+[node name="goblin_enemy" type="CharacterBody2D" groups=["enemy_bodies"]]
 script = ExtResource("1_17o0f")
 
 [node name="parent" type="Node2D" parent="."]

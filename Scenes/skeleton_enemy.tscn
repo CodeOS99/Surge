@@ -346,7 +346,7 @@ radius = 43.0116
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8yxt"]
 radius = 7.0
 
-[node name="skeleton_enemy" type="CharacterBody2D"]
+[node name="skeleton_enemy" type="CharacterBody2D" groups=["enemy_bodies"]]
 script = ExtResource("1_pqqwj")
 
 [node name="parent" type="Node2D" parent="."]

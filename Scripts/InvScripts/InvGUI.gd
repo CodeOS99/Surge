@@ -16,7 +16,6 @@ var craftSize = 9
 #]
 
 func _ready() -> void:
-	Globals.invGUI = self
 	for i in range(invSize):
 		var slot = InvSlotNode.instantiate()
 		slot.init(InvItemData.Type.MAIN, Vector2(64, 64))

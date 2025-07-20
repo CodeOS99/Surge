@@ -26,6 +26,7 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/godot_su
 [global_group]
 
 buildingColliders="colliders which may result in the deletion of a placed building"
+enemy_bodies="bodies of the enemies"
 
 [input]
 

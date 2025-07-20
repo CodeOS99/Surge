@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://clyhh8p3lxx8l"]
+[gd_scene load_steps=39 format=3 uid="uid://clyhh8p3lxx8l"]
 
 [ext_resource type="Script" path="res://Scripts/seedDecider.gd" id="1_0unc5"]
 [ext_resource type="PackedScene" uid="uid://crvil3gpy50r7" path="res://Scenes/player.tscn" id="1_lese3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/tilemap_gaea_renderer.gd" id="10_t5v38"]
 [ext_resource type="PackedScene" uid="uid://cryo1p2chq20v" path="res://Scenes/spruce_tree.tscn" id="12_i4lu7"]
 [ext_resource type="Script" path="res://Scripts/scuffedTreeAligner.gd" id="12_n8kbq"]
+[ext_resource type="PackedScene" uid="uid://dbccti2ha4a34" path="res://Scenes/Placeables/rock.tscn" id="15_0a1pu"]
 [ext_resource type="Script" path="res://Scripts/day_night_modulate.gd" id="22_tajt3"]
 [ext_resource type="Texture2D" uid="uid://c7r1ttehvk8nk" path="res://Scripts/daynightcycle/daynightcycle-gradient-texture.tres" id="23_56oaf"]
 
@@ -1887,10 +1888,29 @@ falloff_enabled = true
 falloff_map = SubResource("Resource_y2tn4")
 modifiers = Array[ExtResource("6_n54m7")]([])
 
+[sub_resource type="Resource" id="Resource_kxquh"]
+resource_name = "1"
+script = ExtResource("9_3e8vy")
+type = 0
+tilemap_layer = 0
+source_id = 1
+atlas_coord = Vector2i(0, 0)
+alternative_tile = 1
+id = "1"
+layer = 0
+
+[sub_resource type="Resource" id="Resource_558tc"]
+resource_name = "OneRock"
+script = ExtResource("8_ooe1x")
+title = "OneRock"
+tile = SubResource("Resource_kxquh")
+min = 0.15
+max = 0.16
+
 [sub_resource type="Resource" id="Resource_hj46p"]
 resource_name = "Settings"
 script = ExtResource("7_b2d8u")
-tiles = Array[ExtResource("8_ooe1x")]([SubResource("Resource_64k5q")])
+tiles = Array[ExtResource("8_ooe1x")]([SubResource("Resource_64k5q"), SubResource("Resource_558tc")])
 noise = SubResource("FastNoiseLite_jburd")
 infinite = false
 world_size = Vector2i(128, 128)
@@ -1901,8 +1921,12 @@ modifiers = Array[ExtResource("6_n54m7")]([])
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lkbq8"]
 scenes/1/scene = ExtResource("12_i4lu7")
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_hsjto"]
+scenes/1/scene = ExtResource("15_0a1pu")
+
 [sub_resource type="TileSet" id="TileSet_pl0bp"]
 sources/0 = SubResource("TileSetScenesCollectionSource_lkbq8")
+sources/1 = SubResource("TileSetScenesCollectionSource_hsjto")
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_0unc5")

@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	if get_child_count() == 0:
 		Globals.player.strengthBuffs['weapon'] = 0
 	else:
-		Globals.player.strengthBuffs['weapon'] = get_child(0).strength
+		Globals.player.strengthBuffs['weapon'] = get_child(0).data.strength
 
 func _can_drop_data(at_position: Vector2, invItem: Variant) -> bool:
 	# Always allow dropping for now, as per your original code.

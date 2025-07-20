@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://db142v63oh32"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_i5l2g"]
+[ext_resource type="Texture2D" uid="uid://bq75f2mlpvtr4" path="res://Assets/Sunnyside_World_Assets/Elements/Crops/rock.png" id="2_j3u28"]
+
+[resource]
+script = ExtResource("1_i5l2g")
+type = 4
+name = "Rock"
+description = "A slightly sharp rock, useful for cutting trees, patting someone on the back, and as a raw material."
+texture = ExtResource("2_j3u28")
+count = 1
+buildable = false
+is_weapon = true
+strength = 10

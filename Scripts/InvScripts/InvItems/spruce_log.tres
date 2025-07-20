@@ -13,3 +13,5 @@ texture = ExtResource("2_76dly")
 count = 1
 buildable = true
 building = ExtResource("1_serkp")
+is_weapon = false
+strength = 0

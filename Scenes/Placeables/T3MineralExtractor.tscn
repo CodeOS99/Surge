@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwosic01jgccq"]
+
+[ext_resource type="Script" path="res://Scripts/extractors/T3MinExt.gd" id="1_a3yd8"]
+[ext_resource type="Texture2D" uid="uid://bneu4vn5ct0aq" path="res://Assets/Sunnyside_World_Assets/extractors/mineral.png" id="1_le0o8"]
+[ext_resource type="Resource" uid="uid://doksfufb1a1ws" path="res://Scripts/InvScripts/InvItems/coal.tres" id="2_7evtp"]
+[ext_resource type="Resource" uid="uid://orkjrt512idm" path="res://Scripts/InvScripts/InvItems/iron.tres" id="3_6ir3g"]
+[ext_resource type="Texture2D" uid="uid://kt0gvwgdygoj" path="res://Assets/Sunnyside_World_Assets/UI/cancel.png" id="3_iojxn"]
+[ext_resource type="Texture2D" uid="uid://kvfwmicdlw1m" path="res://Assets/Sunnyside_World_Assets/UI/confirm.png" id="4_37ose"]
+[ext_resource type="Resource" uid="uid://c3hon5xlag6kh" path="res://Scripts/InvScripts/InvItems/gold.tres" id="4_tnci5"]
+[ext_resource type="Resource" uid="uid://bv4cpwm6f4wok" path="res://Scripts/InvScripts/InvItems/diamond.tres" id="5_ifsam"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8trsb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_le0o8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q2i86"]
+size = Vector2(16, 16)
+
+[node name="T3MineralExtractor" type="StaticBody2D"]
+script = ExtResource("1_a3yd8")
+coal_data = ExtResource("2_7evtp")
+iron_data = ExtResource("3_6ir3g")
+gold_data = ExtResource("4_tnci5")
+diamond_data = ExtResource("5_ifsam")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8trsb")
+autoplay = "default"
+
+[node name="Cancel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_iojxn")
+
+[node name="Confirm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_37ose")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_q2i86")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = -9.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=4 format=3 uid="uid://dlh1rfle6d235"]
+
+[ext_resource type="PackedScene" uid="uid://blthd7apu4fru" path="res://Scenes/Placeables/T2MineralExtractor.tscn" id="1_3mya4"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_ya3tm"]
+[ext_resource type="Texture2D" uid="uid://bp3l0oc75pndt" path="res://Assets/Sunnyside_World_Assets/extractors/mineralExtractorT2.png" id="2_a3mku"]
+
+[resource]
+script = ExtResource("1_ya3tm")
+type = 6
+name = "Tier 2 Mineral Extractot"
+description = "An enhanced machine, able to reach the depths to extract valuable gold from its ores."
+texture = ExtResource("2_a3mku")
+count = 1
+buildable = true
+building = ExtResource("1_3mya4")
+is_weapon = false
+strength = 0

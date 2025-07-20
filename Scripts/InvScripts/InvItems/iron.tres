@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://orkjrt512idm"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_aknm4"]
+[ext_resource type="Texture2D" uid="uid://wrjyk13qgi1s" path="res://Assets/Sunnyside_World_Assets/extractors/iron.png" id="2_fjgq2"]
+
+[resource]
+script = ExtResource("1_aknm4")
+type = 6
+name = "Iron"
+description = "Extracted from the depths"
+texture = ExtResource("2_fjgq2")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0

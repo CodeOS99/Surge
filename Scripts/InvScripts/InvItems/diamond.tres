@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://bv4cpwm6f4wok"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_va4wt"]
+[ext_resource type="Texture2D" uid="uid://dfqn3boahwvvx" path="res://Assets/Sunnyside_World_Assets/extractors/diamond.png" id="2_05s22"]
+
+[resource]
+script = ExtResource("1_va4wt")
+type = 6
+name = "Diamond"
+description = "A valueable, hard, resource."
+texture = ExtResource("2_05s22")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0

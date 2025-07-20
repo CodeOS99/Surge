@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://c3hon5xlag6kh"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_28b7a"]
+[ext_resource type="Texture2D" uid="uid://bnfcs37ikcswj" path="res://Assets/Sunnyside_World_Assets/extractors/gold.png" id="2_7mocc"]
+
+[resource]
+script = ExtResource("1_28b7a")
+type = 6
+name = "Gold"
+description = "GOLD!!"
+texture = ExtResource("2_7mocc")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0

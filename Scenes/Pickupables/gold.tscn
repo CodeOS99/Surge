@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://difex2gxism6n"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/dropped_inv_item.gd" id="1_ctmc4"]
+[ext_resource type="Texture2D" uid="uid://bnfcs37ikcswj" path="res://Assets/Sunnyside_World_Assets/extractors/gold.png" id="1_tco44"]
+[ext_resource type="Resource" uid="uid://c3hon5xlag6kh" path="res://Scripts/InvScripts/InvItems/gold.tres" id="2_4r3ia"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2mhu3"]
+radius = 14.04
+
+[node name="gold" type="StaticBody2D"]
+script = ExtResource("1_ctmc4")
+data = ExtResource("2_4r3ia")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tco44")
+
+[node name="dropped_item_pickup_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dropped_item_pickup_range"]
+shape = SubResource("CircleShape2D_2mhu3")
+
+[connection signal="area_entered" from="dropped_item_pickup_range" to="." method="_on_dropped_item_pickup_range_area_entered"]

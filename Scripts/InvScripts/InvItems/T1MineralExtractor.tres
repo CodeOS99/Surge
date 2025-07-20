@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=4 format=3 uid="uid://cnfximhp5552b"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_6oevo"]
+[ext_resource type="PackedScene" uid="uid://bbl54ivh7rj6l" path="res://Scenes/Placeables/T1MineralExtractor.tscn" id="1_70drb"]
+[ext_resource type="Texture2D" uid="uid://dultlla64xkrp" path="res://Assets/Sunnyside_World_Assets/extractors/mineralExtractorT1.png" id="3_t18ta"]
+
+[resource]
+script = ExtResource("1_6oevo")
+type = 6
+name = "Tier 1 Mineral Extractor"
+description = "Extracts iron and coal"
+texture = ExtResource("3_t18ta")
+count = 1
+buildable = true
+building = ExtResource("1_70drb")
+is_weapon = false
+strength = 0

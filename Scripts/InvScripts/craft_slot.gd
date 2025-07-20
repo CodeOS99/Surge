@@ -1,4 +1,4 @@
-class_name craft_Slot
+class_name CraftSlot
 extends PanelContainer
 
 @export var type: InvItemData.Type # This `type` variable isn't used in CraftSlot's _can_drop_data logic. Consider if it's necessary here.

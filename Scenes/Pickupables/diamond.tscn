@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmhkysefg4ec6"]
+
+[ext_resource type="Texture2D" uid="uid://dfqn3boahwvvx" path="res://Assets/Sunnyside_World_Assets/extractors/diamond.png" id="1_7xl1l"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/dropped_inv_item.gd" id="1_qyofd"]
+[ext_resource type="Resource" uid="uid://bv4cpwm6f4wok" path="res://Scripts/InvScripts/InvItems/diamond.tres" id="2_thp5g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_umhnc"]
+radius = 14.04
+
+[node name="diamond" type="StaticBody2D"]
+script = ExtResource("1_qyofd")
+data = ExtResource("2_thp5g")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7xl1l")
+
+[node name="dropped_item_pickup_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dropped_item_pickup_range"]
+shape = SubResource("CircleShape2D_umhnc")
+
+[connection signal="area_entered" from="dropped_item_pickup_range" to="." method="_on_dropped_item_pickup_range_area_entered"]

@@ -108,15 +108,4 @@ func add_item_data(data_to_add: InvItemData) -> void:
 
 # This function should now trigger the craft action on the CraftingUI
 func _on_button_pressed() -> void:
-	# We now delegate the crafting process to the CraftingUI script.
-	# The CraftingUI script is responsible for:
-	# 1. Checking if a recipe is matched.
-	# 2. Consuming ingredients from the crafting grid.
-	# 3. Calling InvGUI.add_item_data() to add the crafted result.
-	
-	if crafting_ui_node:
-		# Call the craft button's pressed function on the CraftingUI
-		# This will internally handle recipe checking, consumption, and adding to inventory.
-		crafting_ui_node._on_craft_button_pressed() 
-	else:
-		print("Error: CraftingUI node not assigned in InvGUI.")
+	pass

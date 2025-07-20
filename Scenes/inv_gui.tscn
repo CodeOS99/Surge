@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch28e8fdrmv67"]
+[gd_scene load_steps=9 format=3 uid="uid://ch28e8fdrmv67"]
 
 [ext_resource type="Script" path="res://Scripts/InvScripts/InvGUI.gd" id="1_gybri"]
 [ext_resource type="Script" path="res://Scripts/Invscripts/craft_grid.gd" id="2_41dg5"]
 [ext_resource type="PackedScene" uid="uid://7d8mveagi1ej" path="res://Scenes/craft_preview.tscn" id="3_an4bs"]
-[ext_resource type="Script" path="res://Scripts/Invscripts/craft_preview.gd" id="4_1ydnj"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/craft_preview.gd" id="4_ovxnc"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/CraftingRecipe.gd" id="5_v8lmf"]
-[ext_resource type="Resource" uid="uid://dfuui28nhj0xl" path="res://Scripts/InvScripts/Crafting_Recipes/TestRecipe.tres" id="6_ygf07"]
-[ext_resource type="Resource" uid="uid://vlsxpfatjeba" path="res://Scripts/InvScripts/Crafting_Recipes/gigaTestRecipe.tres" id="7_hu5it"]
-[ext_resource type="Resource" uid="uid://34wie4e8www" path="res://Scripts/InvScripts/Crafting_Recipes/BiggerTestRecipe.tres" id="8_iso6l"]
+[ext_resource type="Resource" uid="uid://dkqwhcwmvrb6p" path="res://Scripts/InvScripts/Crafting_Recipes/T1MinExtRec.tres" id="6_fplf7"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/held_item.gd" id="9_xi7s3"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/current_weapon.gd" id="10_0higf"]
 
@@ -58,8 +56,8 @@ text = "Craft"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("4_1ydnj")
-all_crafting_recipes = Array[ExtResource("5_v8lmf")]([ExtResource("6_ygf07"), ExtResource("7_hu5it"), ExtResource("8_iso6l")])
+script = ExtResource("4_ovxnc")
+all_crafting_recipes = Array[ExtResource("5_v8lmf")]([ExtResource("6_fplf7")])
 
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer/CraftPreview"]
 layout_mode = 2

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgrbs1usi2y66"]
+
+[ext_resource type="Texture2D" uid="uid://de775iq7xmr2v" path="res://Assets/Sunnyside_World_Assets/extractors/coal.png" id="1_3ijiy"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/dropped_inv_item.gd" id="1_wfm8j"]
+[ext_resource type="Resource" uid="uid://doksfufb1a1ws" path="res://Scripts/InvScripts/InvItems/coal.tres" id="2_17ker"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o7yr2"]
+radius = 14.0357
+
+[node name="coal" type="StaticBody2D"]
+script = ExtResource("1_wfm8j")
+data = ExtResource("2_17ker")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3ijiy")
+
+[node name="dropped_item_pickup_range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dropped_item_pickup_range"]
+shape = SubResource("CircleShape2D_o7yr2")
+
+[connection signal="area_entered" from="dropped_item_pickup_range" to="." method="_on_dropped_item_pickup_range_area_entered"]

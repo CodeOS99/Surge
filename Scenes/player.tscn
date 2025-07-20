@@ -1,13 +1,13 @@
 [gd_scene load_steps=82 format=3 uid="uid://crvil3gpy50r7"]
 
-[ext_resource type="Texture2D" uid="uid://duskqc5mvditn" path="res://Assets/Sunnyside_World_Assets/Characters/Human/IDLE/base_idle_strip9.png" id="1_ofw25"]
+[ext_resource type="Texture2D" uid="uid://duskqc5mvditn" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/IDLE/base_idle_strip9.png" id="1_ofw25"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_ryt16"]
 [ext_resource type="Texture2D" uid="uid://beb1s78qg6mr1" path="res://Assets/Sunnyside_World_Assets/Characters/Human/AXE/base_axe_strip10.png" id="2_aof03"]
-[ext_resource type="Texture2D" uid="uid://cxdgi36ow5lxw" path="res://Assets/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="2_du0tt"]
-[ext_resource type="Texture2D" uid="uid://d2w755dop2y2m" path="res://Assets/Sunnyside_World_Assets/Characters/Human/ATTACK/base_attack_strip10.png" id="2_xjhfn"]
+[ext_resource type="Texture2D" uid="uid://cxdgi36ow5lxw" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/RUN/base_run_strip8.png" id="2_du0tt"]
+[ext_resource type="Texture2D" uid="uid://d2w755dop2y2m" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/ATTACK/base_attack_strip10.png" id="2_xjhfn"]
 [ext_resource type="Texture2D" uid="uid://dny08pfq4ys5k" path="res://Assets/Sunnyside_World_Assets/Characters/Human/WALKING/base_walk_strip8.png" id="3_twh8s"]
-[ext_resource type="Texture2D" uid="uid://i1spxx50s8fy" path="res://Assets/Sunnyside_World_Assets/Characters/Human/DEATH/base_death_strip13.png" id="4_hoj4x"]
-[ext_resource type="Texture2D" uid="uid://btsmoblcxysjy" path="res://Assets/Sunnyside_World_Assets/Characters/Human/HURT/base_hurt_strip8.png" id="4_skpox"]
+[ext_resource type="Texture2D" uid="uid://i1spxx50s8fy" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/DEATH/base_death_strip13.png" id="4_hoj4x"]
+[ext_resource type="Texture2D" uid="uid://btsmoblcxysjy" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/HURT/base_hurt_strip8.png" id="4_skpox"]
 [ext_resource type="Script" path="res://Scripts/player_cam_script.gd" id="7_gjie6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfpq1"]

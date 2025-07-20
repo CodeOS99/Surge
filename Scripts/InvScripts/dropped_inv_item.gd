@@ -7,7 +7,7 @@ extends StaticBody2D
 @onready var sprite := $Sprite2D
 
 func init(d: InvItemData) -> void:
-	data = d
+	data = d.duplicate()
 
 func _ready() -> void:
 	sprite.texture = data.texture
@@ -17,7 +17,7 @@ func change_count(n: int):
 	data.count += n
 	count_label.text = str(data.count)
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
+func _on_dropped_item_pickup_range_area_entered(area: Area2D) -> void:
 	if area.name != "dropped_item_pickup_range":
 		return
 

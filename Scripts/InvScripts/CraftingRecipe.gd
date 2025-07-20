@@ -15,7 +15,9 @@ class_name CraftingRecipe extends Resource
 @export var result_count: int = 1
 
 # Dictionary to hold the *exact* count needed for each item in the pattern.
-# This is optional but useful if a recipe requires more than 1 of an item in a single slot.
-# Format: {"ItemName": count}
-# If not specified, it assumes count of 1 for each named item in the pattern.
-@export var item_counts_in_pattern: Dictionary = {}
+# Format: {idx: count}
+@export var item_counts_in_pattern: Array[int] = [
+	1, 1, 1,
+	1, 1, 1,
+	1, 1, 1
+]

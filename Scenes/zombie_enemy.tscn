@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://c0wfm67vpd4gq" path="res://Scenes/damage_area.tscn" id="1_4och8"]
 [ext_resource type="Script" path="res://Scripts/zombie_enemy.gd" id="1_rk84u"]
 [ext_resource type="Texture2D" uid="uid://beb1s78qg6mr1" path="res://Assets/Sunnyside_World_Assets/Characters/Human/AXE/base_axe_strip10.png" id="2_5pev4"]
-[ext_resource type="Texture2D" uid="uid://i1spxx50s8fy" path="res://Assets/Sunnyside_World_Assets/Characters/Human/DEATH/base_death_strip13.png" id="3_amhfp"]
-[ext_resource type="Texture2D" uid="uid://btsmoblcxysjy" path="res://Assets/Sunnyside_World_Assets/Characters/Human/HURT/base_hurt_strip8.png" id="4_dyq3r"]
-[ext_resource type="Texture2D" uid="uid://cxdgi36ow5lxw" path="res://Assets/Sunnyside_World_Assets/Characters/Human/RUN/base_run_strip8.png" id="5_4v027"]
+[ext_resource type="Texture2D" uid="uid://i1spxx50s8fy" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/DEATH/base_death_strip13.png" id="3_amhfp"]
+[ext_resource type="Texture2D" uid="uid://btsmoblcxysjy" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/HURT/base_hurt_strip8.png" id="4_dyq3r"]
+[ext_resource type="Texture2D" uid="uid://cxdgi36ow5lxw" path="res://Assets/Sunnyside_World_Assets/Characters/Zombie/RUN/base_run_strip8.png" id="5_4v027"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a47bs"]
 radius = 32.0624

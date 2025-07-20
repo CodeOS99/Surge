@@ -5,7 +5,8 @@ class_name CraftingUI extends PanelContainer
 @export var all_crafting_recipes: Array[CraftingRecipe]
 
 # Renamed for clarity, stores the current names in the grid
-var curr_grid_pattern: Array[String] = []
+var curr_grid_name_pattern: Array[String] = []
+var curr_grid_count_pattern: Array[int] = []
 
 # Stores the CraftingRecipe resource if a match is found
 var current_matched_recipe: CraftingRecipe = null
@@ -17,13 +18,12 @@ var current_matched_recipe: CraftingRecipe = null
 func _ready() -> void:
 	# Initialize the crafting grid pattern array with "none" for all 9 slots
 	for i in range(9):
-		curr_grid_pattern.append("none")
+		curr_grid_name_pattern.append("none")
+		curr_grid_count_pattern.append(1)
 
 	# Connect the craft button's pressed signal (you'll need to add a Button node)
 	if craft_button:
 		craft_button.pressed.connect(Callable(self, "_on_craft_button_pressed"))
-	
-	# No initial update here; _process will handle it immediately.
 
 func _process(delta: float) -> void:
 	# This function will run every frame to check the crafting grid
@@ -36,31 +36,35 @@ func _process(delta: float) -> void:
 func _read_grid_items() -> void:
 	# Make sure curr_grid_pattern is always 9 elements long and reset for each read
 	# We clear and re-add "none" to ensure any removed items are reflected.
-	curr_grid_pattern.clear()
+	curr_grid_name_pattern.clear()
+	curr_grid_count_pattern.clear()
 	for i in range(9):
-		curr_grid_pattern.append("none")
+		curr_grid_name_pattern.append("none")
+		curr_grid_count_pattern.append(1)
 
 	for slot_idx in range(grid.get_child_count()):
 		var slot = grid.get_child(slot_idx)
 		if slot.get_child_count() > 0:
 			var item_in_slot = slot.get_child(0) # Assumes the InvItemClass is the first child
 			if item_in_slot is InvItemClass and item_in_slot.data != null:
-				curr_grid_pattern[slot_idx] = item_in_slot.data.name
+				curr_grid_name_pattern[slot_idx] = item_in_slot.data.name
+				curr_grid_count_pattern[slot_idx] = item_in_slot.data.count
 			else:
-				curr_grid_pattern[slot_idx] = "none" # Item data invalid or not an InvItemClass
+				curr_grid_name_pattern[slot_idx] = "none"
+				curr_grid_count_pattern[slot_idx] = 1
 		else:
-			curr_grid_pattern[slot_idx] = "none" # Slot is empty
-
+			curr_grid_name_pattern[slot_idx] = "none"
+			curr_grid_count_pattern[slot_idx] = 1
 # Matches the current grid pattern against your defined recipes
 func _match_recipe() -> CraftingRecipe: # Returns a CraftingRecipe resource or null
 	for recipe in all_crafting_recipes:
-		if recipe.pattern.size() != curr_grid_pattern.size():
+		if recipe.pattern.size() != curr_grid_name_pattern.size():
 			push_warning("Recipe pattern size mismatch for recipe: ", recipe.recipe_name)
 			continue # Skip this recipe if its pattern size is wrong
 		
 		var _match = true
-		for i in range(curr_grid_pattern.size()):
-			if recipe.pattern[i] != curr_grid_pattern[i]:
+		for i in range(curr_grid_name_pattern.size()):
+			if recipe.pattern[i] != curr_grid_name_pattern[i] or recipe.item_counts_in_pattern[i] != curr_grid_count_pattern[i]:
 				_match = false
 				break # Mismatch found, move to next recipe
 		
@@ -94,7 +98,7 @@ func _on_craft_button_pressed() -> void:
 			# Only consume if the item is part of the matched pattern
 			# This ensures we don't accidentally consume an item that's in the grid but not part of the current recipe
 			if item_in_slot and current_matched_recipe.pattern[slot_idx] == item_in_slot.data.name:
-				item_in_slot.change_count(-1, false) # Consumes one item from this slot
+				item_in_slot.change_count(-curr_grid_count_pattern[slot_idx], false) # Consumes one item from this slot
 	
 	# 2. Add the crafted item to the player's inventory
 	# You'll need to ensure Globals.player and its get_inventory_gui() method exist and are correctly set up.

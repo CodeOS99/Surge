@@ -10,4 +10,4 @@ recipe_description = "Recipe of T1 Mineral Extractor"
 pattern = Array[String](["Rock", "Rock", "Rock", "Rock", "Log", "Rock", "Rock", "Rock", "Rock"])
 result_item_template = ExtResource("1_yv4js")
 result_count = 1
-item_counts_in_pattern = {}
+item_counts_in_pattern = Array[int]([1, 1, 1, 1, 1, 1, 1, 1, 1])

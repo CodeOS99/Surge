@@ -64,7 +64,7 @@ func _match_recipe() -> CraftingRecipe: # Returns a CraftingRecipe resource or n
 		
 		var _match = true
 		for i in range(curr_grid_name_pattern.size()):
-			if recipe.pattern[i] != curr_grid_name_pattern[i] or recipe.item_counts_in_pattern[i] != curr_grid_count_pattern[i]:
+			if recipe.pattern[i] != curr_grid_name_pattern[i] or recipe.item_counts_in_pattern[i] > curr_grid_count_pattern[i]:
 				_match = false
 				break # Mismatch found, move to next recipe
 		
@@ -98,7 +98,7 @@ func _on_craft_button_pressed() -> void:
 			# Only consume if the item is part of the matched pattern
 			# This ensures we don't accidentally consume an item that's in the grid but not part of the current recipe
 			if item_in_slot and current_matched_recipe.pattern[slot_idx] == item_in_slot.data.name:
-				item_in_slot.change_count(-curr_grid_count_pattern[slot_idx], false) # Consumes one item from this slot
+				item_in_slot.change_count(-current_matched_recipe.item_counts_in_pattern[slot_idx], false) # Consumes items from this slot
 	
 	# 2. Add the crafted item to the player's inventory
 	# You'll need to ensure Globals.player and its get_inventory_gui() method exist and are correctly set up.
@@ -125,3 +125,4 @@ func _on_craft_button_pressed() -> void:
 	_read_grid_items()
 	current_matched_recipe = _match_recipe()
 	_update_preview_and_button()
+	

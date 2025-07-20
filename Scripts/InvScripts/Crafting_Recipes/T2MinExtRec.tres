@@ -10,4 +10,4 @@ recipe_description = "Recipe of T1 Mineral Extractor"
 pattern = Array[String](["Coal", "Coal", "Coal", "Iron", "Tier 1 Mineral Extractor", "Iron", "Rock", "Rock", "Rock"])
 result_item_template = ExtResource("1_cs35i")
 result_count = 1
-item_counts_in_pattern = {}
+item_counts_in_pattern = Array[int]([5, 5, 5, 2, 1, 2, 5, 5, 5])

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://5efhj0ap46ss"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_qcbu6"]
+[ext_resource type="Texture2D" uid="uid://66l13hl6tts6" path="res://Assets/Sunnyside_World_Assets/Elements/Crops/carrot_05.png" id="2_b7pe3"]
+
+[resource]
+script = ExtResource("1_qcbu6")
+type = 7
+name = "Carrot"
+description = "Better than wheat!"
+texture = ExtResource("2_b7pe3")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0

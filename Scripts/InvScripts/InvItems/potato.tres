@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://dflhjdc1u7oi8"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_bhfdy"]
+[ext_resource type="Texture2D" uid="uid://dsehbpim66ba6" path="res://Assets/Sunnyside_World_Assets/Elements/Crops/potato_05.png" id="2_4cs1o"]
+
+[resource]
+script = ExtResource("1_bhfdy")
+type = 7
+name = "Potato"
+description = "Best"
+texture = ExtResource("2_4cs1o")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0

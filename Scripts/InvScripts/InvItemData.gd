@@ -1,7 +1,7 @@
 class_name InvItemData
 extends Resource
 
-enum Type  {HELMET, BREASTPLATE, LEGGINGS, BOOTS, SWORD, ACCESSORY, MAIN, NONE}
+enum Type  {HELMET, BREASTPLATE, LEGGINGS, BOOTS, SWORD, ACCESSORY, MAIN, CONSUMABLE, NONE}
 
 @export var type: Type
 @export var name: String

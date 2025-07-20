@@ -1931,8 +1931,12 @@ sources/1 = SubResource("TileSetScenesCollectionSource_hsjto")
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_0unc5")
 
-[node name="Player" parent="." instance=ExtResource("1_lese3")]
+[node name="Player" parent="." node_paths=PackedStringArray("foraging_point_label", "health_progress_bar", "stamina_progress_bar", "hunger_progress_bar") instance=ExtResource("1_lese3")]
 position = Vector2(896, 643)
+foraging_point_label = NodePath("../HUD/VBoxContainer/ForagingPointsLabel")
+health_progress_bar = NodePath("../HUD/VBoxContainer/HealthProgressBar")
+stamina_progress_bar = NodePath("../HUD/VBoxContainer/StaminaProgressBar")
+hunger_progress_bar = NodePath("../HUD/VBoxContainer/HungerProgressBar")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_5w8dt")
@@ -1966,5 +1970,36 @@ generator = NodePath("../NoiseGenerator2")
 [node name="DayNightModulate" type="CanvasModulate" parent="."]
 script = ExtResource("22_tajt3")
 gradient = ExtResource("23_56oaf")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+offset_right = 163.0
+offset_bottom = 58.0
+
+[node name="ForagingPointsLabel" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "FORAGING POINTS: 0"
+
+[node name="StaminaLabel" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "Stamina:"
+
+[node name="StaminaProgressBar" type="ProgressBar" parent="HUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="HungerLabel" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "Hunger:"
+
+[node name="HungerProgressBar" type="ProgressBar" parent="HUD/VBoxContainer"]
+layout_mode = 2
+
+[node name="HealthLabel" type="Label" parent="HUD/VBoxContainer"]
+layout_mode = 2
+text = "Health:"
+
+[node name="HealthProgressBar" type="ProgressBar" parent="HUD/VBoxContainer"]
+layout_mode = 2
 
 [connection signal="generation_finished" from="NoiseGenerator2" to="TileMapLayer2" method="_on_noise_generator_2_generation_finished"]

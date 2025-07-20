@@ -5,8 +5,11 @@
 
 [resource]
 script = ExtResource("1_46ccr")
-type = 6
+type = 7
 name = "Wheat"
 description = "WHEEEEEEEAT"
 texture = ExtResource("2_uw7hd")
 count = 1
+buildable = false
+is_weapon = false
+strength = 0

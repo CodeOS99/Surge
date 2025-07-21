@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_bhfdy")
-type = 7
+type = 4
 name = "Potato"
 description = "Best"
 texture = ExtResource("2_4cs1o")
@@ -13,3 +13,5 @@ count = 1
 buildable = false
 is_weapon = false
 strength = 0
+defence = 0
+fuel_efficiency = 0.0

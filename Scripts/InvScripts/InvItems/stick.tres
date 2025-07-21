@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://ctp01wc5yj0qn"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_m505v"]
+[ext_resource type="Texture2D" uid="uid://djpacj45476tu" path="res://Assets/Sunnyside_World_Assets/stick.png" id="2_kmo6u"]
+
+[resource]
+script = ExtResource("1_m505v")
+type = 8
+name = "Stick"
+description = "Looooong log"
+texture = ExtResource("2_kmo6u")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0
+fuel_efficiency = 0.25

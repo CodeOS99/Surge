@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://bregnox0araar"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_hdqxa"]
+[ext_resource type="Texture2D" uid="uid://cdoq0iwu7anwt" path="res://Assets/Sunnyside_World_Assets/goldArmour.png" id="2_higqi"]
+
+[resource]
+script = ExtResource("1_hdqxa")
+type = 0
+name = "Diamond Armour"
+description = "The most secure defensive clothing on the island."
+texture = ExtResource("2_higqi")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0
+defence = 5
+fuel_efficiency = 0.0

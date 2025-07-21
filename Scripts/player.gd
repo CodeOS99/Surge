@@ -55,6 +55,11 @@ var strengthBuffs = {
 	"weapon": 0
 }
 
+var initDefence = 1
+var defenceBuffs = {
+	"armour": 0
+}
+
 # --- Buff Management Variables ---
 var _temp_defense_buff_timer: Timer = null
 var _temp_defense_buff_amount: float = 0.0
@@ -229,6 +234,8 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if ANIMATED_SPRITE.animation in ['axe', 'hurt', 'attack']:
 		can_move = true
 		ANIMATED_SPRITE.play("idle")
+	elif ANIMATED_SPRITE.animation == "death":
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	if not ANIMATED_SPRITE:
@@ -339,17 +346,57 @@ func goToSoulYard():
 	Globals.transition_to_scene(get_tree(), "res://Scenes/soulyard.tscn")
 
 func takeDamage(n: int):
-	if ANIMATED_SPRITE.animation != "hurt":
-		health += n # n is likely negative for damage
-		health = clamp(health, 0, max_health) # Ensure health stays within bounds
-		if health <= 0:
-			print("dead!!!!")
-			# Implement death logic here (e.g., respawn, game over)
-		if n < 0:
+	if n < 0:
+		var raw_damage = abs(n) # Get the positive value of the incoming damage
+
+		var defense = initDefence + defenceBuffs["armour"]
+		var _defense_scaling_factor: float = 1.0 
+		var defense_reduction_percentage = float(defense) / (float(defense) + _defense_scaling_factor)
+		
+		# Clamp the reduction to prevent unintended effects (e.g., healing from extremely high defense, though unlikely with this formula)
+		defense_reduction_percentage = clamp(defense_reduction_percentage, 0.0, 0.95) # Cap reduction at 95% to always take at least some damage
+
+		var effective_damage = raw_damage * (1.0 - defense_reduction_percentage)
+		
+		# Ensure effective_damage is at least 0 (damage cannot result in healing)
+		effective_damage = max(0.0, effective_damage)
+		
+		# Apply the calculated effective damage to health
+		health -= int(effective_damage) # Convert to integer as health is likely an integer
+
+		# Trigger hurt animation if any raw damage was incoming, and not already playing hurt
+		if raw_damage > 0 and ANIMATED_SPRITE.animation != "hurt":
 			ANIMATED_SPRITE.play("hurt")
 			can_move = false
-		_update_hud() # Update UI after health change
+	else:
+		# If 'n' is positive, it's considered healing, apply directly
+		health += n
 
+	# Ensure health stays within min/max bounds
+	health = clamp(health, 0, max_health) 
+
+	# Check for death after applying damage/healing
+	if health <= 0:
+		die()
+
+var is_dying = false
+func die():
+	# Prevent multiple death animations/scene changes
+	if is_dying:
+		return
+	is_dying = true
+
+	# 1. Stop Player Movement, Input, and all processing
+	can_move = false # Assuming you have this flag for movement control
+	set_process(false)        # Stop _process(delta)
+	set_physics_process(false) # Stop _physics_process(delta)
+	set_process_input(false)  # Stop _input(event)
+
+	# 2. Play Death Animation
+	if ANIMATED_SPRITE:
+		ANIMATED_SPRITE.play("death") # Play your death animation
+
+	_update_hud() # Always update UI after health changes
 func _on_weapon_collider_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemy_bodies"):
 		body.change_health(-calcStrength())
@@ -380,7 +427,7 @@ func _on_hunger_tick() -> void:
 
 	if hunger <= 0:
 		# Player is starving, start taking health damage
-		takeDamage(-1) # Take 1 damage per hunger tick when starving
+		takeDamage(-5) # Take 1 damage per hunger tick when starving
 	_update_hud() # Update UI after hunger change
 
 func _on_stamina_regen_tick() -> void:
@@ -416,38 +463,39 @@ func _on_regen_duration_timeout() -> void:
 
 # --- The _consume_item function with Hunger and Stamina ---
 func _consume_item(data: InvItemData) -> void:
-	if data.name == "Carrot":
-		# Primary: Quick burst of Stamina and minor Health
-		stamina = min(stamina + 15, max_stamina)
-		health = min(health + 5, max_health)
-		hunger = min(hunger + 10, max_hunger) # Minor hunger fill
+	for i in range(data.count):
+		if data.name == "Carrot":
+			# Primary: Quick burst of Stamina and minor Health
+			stamina = min(stamina + 15, max_stamina)
+			health = min(health + 5, max_health)
+			hunger = min(hunger + 10, max_hunger) # Minor hunger fill
 
-		# Secondary: Temporary Perception/Foraging Buff (e.g., increased rare drop chance)
-		var buff_duration = 20.0 # seconds
-		var buff_strength = 0.05 # 5% increase in a relevant stat (e.g., rare drop chance)
-		_apply_perception_buff(buff_duration, buff_strength)
+			# Secondary: Temporary Perception/Foraging Buff (e.g., increased rare drop chance)
+			var buff_duration = 20.0 # seconds
+			var buff_strength = 0.05 # 5% increase in a relevant stat (e.g., rare drop chance)
+			_apply_perception_buff(buff_duration, buff_strength)
 
-	elif data.name == "Potato":
-		# Primary: Solid Health Recovery and good Hunger Satisfaction
-		health = min(health + 15, max_health)
-		hunger = min(hunger + 25, max_hunger) # Good hunger fill
-		stamina = min(stamina + 10, max_stamina) # Minor stamina
+		elif data.name == "Potato":
+			# Primary: Solid Health Recovery and good Hunger Satisfaction
+			health = min(health + 15, max_health)
+			hunger = min(hunger + 25, max_hunger) # Good hunger fill
+			stamina = min(stamina + 10, max_stamina) # Minor stamina
 
-		# Secondary: Temporary Defense Buff (e.g., damage resistance)
-		var buff_duration = 45.0 # seconds
-		var buff_strength = 0.10 # 10% damage resistance
-		_apply_defense_buff(buff_duration, buff_strength)
-		
-	elif data.name == "Bread":
-		# Primary: Excellent Health and Hunger Satisfaction, moderate Stamina
-		health = min(health + 30, max_health)
-		hunger = min(hunger + 40, max_hunger) # Excellent hunger fill
-		stamina = min(stamina + 20, max_stamina) # Moderate stamina
+			# Secondary: Temporary Defense Buff (e.g., damage resistance)
+			var buff_duration = 45.0 # seconds
+			var buff_strength = 0.10 # 10% damage resistance
+			_apply_defense_buff(buff_duration, buff_strength)
+			
+		elif data.name == "Bread":
+			# Primary: Excellent Health and Hunger Satisfaction, moderate Stamina
+			health = min(health + 30, max_health)
+			hunger = min(hunger + 40, max_hunger) # Excellent hunger fill
+			stamina = min(stamina + 20, max_stamina) # Moderate stamina
 
-		# Secondary: Temporary Regeneration Buff (Health/Stamina regen per second)
-		var buff_duration = 60.0 # seconds (total duration of regen)
-		var regen_rate = 2.0 # 2 HP/Stamina per second
-		_apply_regen_buff(buff_duration, regen_rate)
+			# Secondary: Temporary Regeneration Buff (Health/Stamina regen per second)
+			var buff_duration = 60.0 # seconds (total duration of regen)
+			var regen_rate = 2.0 # 2 HP/Stamina per second
+			_apply_regen_buff(buff_duration, regen_rate)
 			
 	_update_hud() # Update UI after consuming an item
 

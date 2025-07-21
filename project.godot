@@ -28,6 +28,10 @@ enabled=PackedStringArray("res://addons/gaea/plugin.cfg", "res://addons/godot_su
 buildingColliders="colliders which may result in the deletion of a placed building"
 enemy_bodies="bodies of the enemies"
 
+[gui]
+
+theme/custom_font="res://Assets/PixelifySans-VariableFont_wght.ttf"
+
 [input]
 
 left={

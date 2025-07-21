@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://btlcyjc7yfn4x"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_7c1i7"]
+[ext_resource type="Texture2D" uid="uid://bgd75qj3wh06e" path="res://Assets/Sunnyside_World_Assets/diamondSword.png" id="2_gmlvl"]
+
+[resource]
+script = ExtResource("1_7c1i7")
+type = 0
+name = "Diamond Sword"
+description = "The best of the best, a beast slayer."
+texture = ExtResource("2_gmlvl")
+count = 1
+buildable = false
+is_weapon = false
+strength = 100
+defence = 0
+fuel_efficiency = 0.0

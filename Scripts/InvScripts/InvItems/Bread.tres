@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://dm2okhuewfk4i"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_ucinf"]
+[ext_resource type="Texture2D" uid="uid://co2xq85pug4t7" path="res://Assets/Sunnyside_World_Assets/bread.png" id="2_uveok"]
+
+[resource]
+script = ExtResource("1_ucinf")
+type = 4
+name = "Bread"
+description = "A nutritiout meal."
+texture = ExtResource("2_uveok")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0
+defence = 0
+fuel_efficiency = 0.0

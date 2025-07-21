@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_lf34n")
-type = 6
+type = 8
 name = "Coal"
 description = "A decent fuel. Helps increase efficiency of extractors"
 texture = ExtResource("2_35ad0")
@@ -13,3 +13,4 @@ count = 1
 buildable = false
 is_weapon = false
 strength = 0
+fuel_efficiency = 3.0

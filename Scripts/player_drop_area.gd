@@ -13,6 +13,7 @@ func _can_drop_data(position: Vector2, node: Variant) -> bool:
 
 func _drop_data(position: Vector2, node: Variant) -> void:
 	var data: InvItemData = node.data
+	print("dropping")
 	if data.type == InvItemData.Type.CONSUMABLE:
 		print("Consumable item '", data.name, "' dropped on player drop area.")
 		

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://d2fvay0s0otnn"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_1aejl"]
+[ext_resource type="Texture2D" uid="uid://lnlnyo6n4xh4" path="res://Assets/Sunnyside_World_Assets/ironArmour.png" id="2_d3ol1"]
+
+[resource]
+script = ExtResource("1_1aejl")
+type = 0
+name = ""
+description = ""
+texture = ExtResource("2_d3ol1")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0
+defence = 0
+fuel_efficiency = 0.0

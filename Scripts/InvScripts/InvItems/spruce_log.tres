@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_vnfsa")
-type = 7
+type = 8
 name = "Log"
 description = "log_8 8 = 1"
 texture = ExtResource("2_76dly")
@@ -15,3 +15,5 @@ buildable = true
 building = ExtResource("1_serkp")
 is_weapon = false
 strength = 0
+defence = 0
+fuel_efficiency = 1.0

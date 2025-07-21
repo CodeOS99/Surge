@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://br43xpc8wbabp"]
 
-[ext_resource type="Script" path="res://Scripts/Invscripts/craft_slot.gd" id="1_e3tvo"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/craft_slot.gd" id="1_h770w"]
 
 [node name="CraftSlot" type="PanelContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_e3tvo")
+script = ExtResource("1_h770w")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

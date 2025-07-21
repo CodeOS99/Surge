@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://cutryxlkroou6"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_35ef6"]
+[ext_resource type="Texture2D" uid="uid://br3ymdeelf045" path="res://Assets/Sunnyside_World_Assets/woodSword.png" id="2_rkwqw"]
+
+[resource]
+script = ExtResource("1_35ef6")
+type = 0
+name = "Wood Sword"
+description = "A basic sword, better than nothing."
+texture = ExtResource("2_rkwqw")
+count = 1
+buildable = false
+is_weapon = false
+strength = 10
+defence = 0
+fuel_efficiency = 0.0

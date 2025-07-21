@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=3 format=3 uid="uid://dhpnt31avxvwa"]
+
+[ext_resource type="Resource" uid="uid://d2fvay0s0otnn" path="res://Scripts/InvScripts/InvItems/ironArmour.tres" id="1_hnbcb"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/CraftingRecipe.gd" id="2_r0tnj"]
+
+[resource]
+script = ExtResource("2_r0tnj")
+recipe_name = "Iron Armour Recipe"
+recipe_description = "Armour"
+pattern = Array[String](["Iron", "Iron", "Iron", "Iron", "Iron", "Iron", "Iron", "Iron", "Iron"])
+result_item_template = ExtResource("1_hnbcb")
+result_count = 1
+item_counts_in_pattern = Array[int]([2, 2, 2, 2, 2, 2, 2, 2, 2])

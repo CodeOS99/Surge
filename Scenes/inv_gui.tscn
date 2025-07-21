@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch28e8fdrmv67"]
+[gd_scene load_steps=8 format=3 uid="uid://ch28e8fdrmv67"]
 
 [ext_resource type="Script" path="res://Scripts/InvScripts/InvGUI.gd" id="1_gybri"]
 [ext_resource type="Script" path="res://Scripts/Invscripts/craft_grid.gd" id="2_41dg5"]
 [ext_resource type="PackedScene" uid="uid://7d8mveagi1ej" path="res://Scenes/craft_preview.tscn" id="3_an4bs"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/craft_preview.gd" id="4_ovxnc"]
-[ext_resource type="Script" path="res://Scripts/InvScripts/CraftingRecipe.gd" id="5_v8lmf"]
-[ext_resource type="Resource" uid="uid://dkqwhcwmvrb6p" path="res://Scripts/InvScripts/Crafting_Recipes/T1MinExtRec.tres" id="6_fplf7"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/defense_container.gd" id="9_t3c0j"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/held_item.gd" id="9_xi7s3"]
 [ext_resource type="Script" path="res://Scripts/InvScripts/current_weapon.gd" id="10_0higf"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("craftPreviewPanelContainer", "crafting_ui_node")]
+visible = false
 script = ExtResource("1_gybri")
 craftPreviewPanelContainer = NodePath("Panel/GridContainer/VBoxContainer/CraftPreview")
 crafting_ui_node = NodePath("Panel/GridContainer/VBoxContainer/CraftPreview")
@@ -23,13 +23,14 @@ offset_left = -300.0
 offset_right = 408.0
 offset_bottom = 320.0
 grow_horizontal = 2
+tooltip_text = "Space/Enter to toggle"
 
 [node name="GridContainer" type="GridContainer" parent="Panel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_constants/h_separation = 25
-columns = 4
+theme_override_constants/h_separation = 12
+columns = 5
 
 [node name="Inv" type="GridContainer" parent="Panel/GridContainer"]
 unique_name_in_owner = true
@@ -57,7 +58,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("4_ovxnc")
-all_crafting_recipes = Array[ExtResource("5_v8lmf")]([ExtResource("6_fplf7")])
 
 [node name="TextureRect" type="TextureRect" parent="Panel/GridContainer/VBoxContainer/CraftPreview"]
 layout_mode = 2
@@ -67,6 +67,7 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "Place items here that you want to place!"
 script = ExtResource("9_xi7s3")
 
 [node name="CurrentWeapon" type="PanelContainer" parent="Panel/GridContainer"]
@@ -74,8 +75,21 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "Place weapons here!"
 script = ExtResource("10_0higf")
+
+[node name="DefenseContainer" type="PanelContainer" parent="Panel/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Place armours here!"
+script = ExtResource("9_t3c0j")
 
 [connection signal="pressed" from="Panel/GridContainer/VBoxContainer/CraftButton" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="Panel/GridContainer/HeldItem" to="Panel/GridContainer/HeldItem" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Panel/GridContainer/HeldItem" to="Panel/GridContainer/HeldItem" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/GridContainer/CurrentWeapon" to="Panel/GridContainer/CurrentWeapon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/GridContainer/CurrentWeapon" to="Panel/GridContainer/CurrentWeapon" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Panel/GridContainer/DefenseContainer" to="Panel/GridContainer/DefenseContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/GridContainer/DefenseContainer" to="Panel/GridContainer/DefenseContainer" method="_on_mouse_exited"]

@@ -6,6 +6,13 @@ static var time:float = 0.0
 static var wave_number: int = 1
 static var foraging_points: int = 0
 
+static func init():
+	var player: CharacterBody2D = null
+	var invGUI
+	var time:float = 0.0
+	var wave_number: int = 1
+	var foraging_points: int = 0
+
 static func transition_to_scene(tree: SceneTree, target_scene_path: String) -> void:
 	if invGUI:
 		# IMPORTANT: Detach invGUI from its current parent BEFORE changing scenes

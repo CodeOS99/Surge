@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://dm4k1yaedcnw6"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_5hbr7"]
+[ext_resource type="Texture2D" uid="uid://b2g7th6x5r2ro" path="res://Assets/Sunnyside_World_Assets/goldSword.png" id="2_nmb3b"]
+
+[resource]
+script = ExtResource("1_5hbr7")
+type = 0
+name = "Gold Sword"
+description = "One suited for royalty."
+texture = ExtResource("2_nmb3b")
+count = 1
+buildable = false
+is_weapon = false
+strength = 50
+defence = 0
+fuel_efficiency = 0.0

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://r0pg45cmyoun"]
+
+[ext_resource type="Script" path="res://Scripts/restart.gd" id="1_e4gbo"]
+
+[node name="Label" type="Label"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GAEM ORVER!
+
+We ran out of budget and time for this scene. please click the below button to save us from the shame of this scene. Thank you."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 205.0
+offset_right = 312.0
+offset_bottom = 236.0
+text = "RETRY"
+script = ExtResource("1_e4gbo")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

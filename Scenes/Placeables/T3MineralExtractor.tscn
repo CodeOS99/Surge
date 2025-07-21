@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwosic01jgccq"]
+[gd_scene load_steps=12 format=3 uid="uid://dwosic01jgccq"]
 
 [ext_resource type="Script" path="res://Scripts/extractors/T3MinExt.gd" id="1_a3yd8"]
 [ext_resource type="Texture2D" uid="uid://bneu4vn5ct0aq" path="res://Assets/Sunnyside_World_Assets/extractors/mineral.png" id="1_le0o8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://kvfwmicdlw1m" path="res://Assets/Sunnyside_World_Assets/UI/confirm.png" id="4_37ose"]
 [ext_resource type="Resource" uid="uid://c3hon5xlag6kh" path="res://Scripts/InvScripts/InvItems/gold.tres" id="4_tnci5"]
 [ext_resource type="Resource" uid="uid://bv4cpwm6f4wok" path="res://Scripts/InvScripts/InvItems/diamond.tres" id="5_ifsam"]
+[ext_resource type="Script" path="res://Scripts/extractors/drop_area_ext.gd" id="9_6qim2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8trsb"]
 animations = [{
@@ -59,5 +60,23 @@ offset_bottom = -9.0
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="DropArea" type="Panel" parent="." node_paths=PackedStringArray("min_ext")]
+offset_left = -16.0
+offset_top = 9.0
+offset_right = 18.0
+offset_bottom = 17.0
+tooltip_text = "Place fuel here to decrease the time needed to make resources."
+script = ExtResource("9_6qim2")
+min_ext = NodePath("..")
+
+[node name="Label" type="Label" parent="DropArea"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 9
+text = "DROP!"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

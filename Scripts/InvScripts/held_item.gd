@@ -78,7 +78,7 @@ func _drop_data(at_position: Vector2, invItem: Variant) -> void:
 
 func _on_mouse_entered() -> void:
 	var style:StyleBoxFlat = StyleBoxFlat.new()
-	style.bg_color = Color(0.5, 0.5, 0.5, 1)
+	style.bg_color = Color(0.5, 0.5, 0.3, 1)
 	add_theme_stylebox_override ("panel", style)
 
 func _on_mouse_exited() -> void:

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://dx4ivjb0e0omg"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_j4gxp"]
+[ext_resource type="Texture2D" uid="uid://bcpt0uui4tir5" path="res://Assets/Sunnyside_World_Assets/ironSword.png" id="2_pbsft"]
+
+[resource]
+script = ExtResource("1_j4gxp")
+type = 0
+name = "Iron Sword"
+description = "Better than the wooden one."
+texture = ExtResource("2_pbsft")
+count = 1
+buildable = false
+is_weapon = false
+strength = 30
+defence = 0
+fuel_efficiency = 0.0

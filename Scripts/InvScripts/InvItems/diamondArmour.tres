@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="InvItemData" load_steps=3 format=3 uid="uid://2xe0q0acem3a"]
+
+[ext_resource type="Script" path="res://Scripts/InvScripts/InvItemData.gd" id="1_kn4lt"]
+[ext_resource type="Texture2D" uid="uid://disbimamf1lpt" path="res://Assets/Sunnyside_World_Assets/diamondArmour.png" id="2_i3jo0"]
+
+[resource]
+script = ExtResource("1_kn4lt")
+type = 0
+name = "Diamond Armour"
+description = "The best armour"
+texture = ExtResource("2_i3jo0")
+count = 1
+buildable = false
+is_weapon = false
+strength = 0
+defence = 3
+fuel_efficiency = 0.0

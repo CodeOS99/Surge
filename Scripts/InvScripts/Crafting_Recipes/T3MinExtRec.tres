@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CraftingRecipe" load_steps=3 format=3 uid="uid://dgyel6oe6ji0a"]
+
+[ext_resource type="Resource" uid="uid://c02gyodvs8mml" path="res://Scripts/InvScripts/InvItems/T3MineralExtractor.tres" id="1_j3jx6"]
+[ext_resource type="Script" path="res://Scripts/InvScripts/CraftingRecipe.gd" id="2_pys5c"]
+
+[resource]
+script = ExtResource("2_pys5c")
+recipe_name = "T3 Mineral Extractor Recipe"
+recipe_description = "Recipe of T3 Mineral Extractor"
+pattern = Array[String](["Gold", "Iron", "Gold", "Coal", "Tier 2 Mineral Extractor", "Rock", "Gold", "Iron", "Gold"])
+result_item_template = ExtResource("1_j3jx6")
+result_count = 1
+item_counts_in_pattern = Array[int]([5, 5, 5, 2, 1, 2, 5, 5, 5])

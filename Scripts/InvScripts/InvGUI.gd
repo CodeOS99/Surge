@@ -105,7 +105,3 @@ func add_item_data(data_to_add: InvItemData) -> void:
 		first_empty_slot.add_child(invItem)
 	else:
 		print("Inventory full! Cannot add item data: " + item_data_copy.name)
-
-# This function should now trigger the craft action on the CraftingUI
-func _on_button_pressed() -> void:
-	pass

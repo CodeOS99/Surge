@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://bbl54ivh7rj6l"]
+
+[ext_resource type="Texture2D" uid="uid://dultlla64xkrp" path="res://Assets/Sunnyside_World_Assets/extractors/mineralExtractorT1.png" id="1_13768"]
+[ext_resource type="Script" path="res://Scripts/extractors/T1MinExt.gd" id="1_uhce7"]
+[ext_resource type="Resource" uid="uid://doksfufb1a1ws" path="res://Scripts/InvScripts/InvItems/coal.tres" id="2_fcoci"]
+[ext_resource type="Texture2D" uid="uid://kt0gvwgdygoj" path="res://Assets/Sunnyside_World_Assets/UI/cancel.png" id="3_14svo"]
+[ext_resource type="Resource" uid="uid://orkjrt512idm" path="res://Scripts/InvScripts/InvItems/iron.tres" id="3_vory7"]
+[ext_resource type="Texture2D" uid="uid://kvfwmicdlw1m" path="res://Assets/Sunnyside_World_Assets/UI/confirm.png" id="4_s28gq"]
+[ext_resource type="Script" path="res://Scripts/extractors/drop_area_ext.gd" id="7_jdwj1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3rjr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_13768")
+}],
+"loop": true,
+"name": &"T1",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_38rrd"]
+size = Vector2(16, 16)
+
+[node name="T1MineralExtractor" type="StaticBody2D"]
+script = ExtResource("1_uhce7")
+coal_data = ExtResource("2_fcoci")
+iron_data = ExtResource("3_vory7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n3rjr")
+animation = &"T1"
+autoplay = "T1"
+
+[node name="Cancel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_14svo")
+
+[node name="Confirm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_s28gq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_38rrd")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = -9.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DropArea" type="Panel" parent="." node_paths=PackedStringArray("min_ext")]
+offset_left = -16.0
+offset_top = 9.0
+offset_right = 18.0
+offset_bottom = 17.0
+tooltip_text = "Place fuel here to decrease the time needed to make resources."
+script = ExtResource("7_jdwj1")
+min_ext = NodePath("..")
+
+[node name="Label" type="Label" parent="DropArea"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 9
+text = "DROP!"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

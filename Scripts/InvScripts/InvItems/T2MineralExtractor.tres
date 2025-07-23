@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_ya3tm")
 type = 6
-name = "Tier 2 Mineral Extractot"
+name = "Tier 2 Mineral Extractor"
 description = "An enhanced machine, able to reach the depths to extract valuable gold from its ores."
 texture = ExtResource("2_a3mku")
 count = 1
@@ -15,3 +15,5 @@ buildable = true
 building = ExtResource("1_3mya4")
 is_weapon = false
 strength = 0
+defence = 0
+fuel_efficiency = 0.0

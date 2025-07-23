@@ -8,11 +8,17 @@ extends CanvasLayer
 @export var crafting_ui_node: CraftingUI # Changed name for clarity and added type hint
 var invSize = 16
 var craftSize = 9
-#
+
 #var items_to_load = [
-	#"res://Scripts/InvScripts/InvItems/spruce_log.tres",
-	#"res://Scripts/InvScripts/InvItems/text.tres",
-	#"res://Scripts/InvScripts/InvItems/spruce_log.tres"
+	#"res://Scripts/InvScripts/InvItems/iron.tres",
+	#"res://Scripts/InvScripts/InvItems/rock.tres",
+	#"res://Scripts/InvScripts/InvItems/coal.tres",
+	#"res://Scripts/InvScripts/InvItems/gold.tres",
+	#"res://Scripts/InvScripts/InvItems/gold.tres",
+	#"res://Scripts/InvScripts/InvItems/T2MineralExtractor.tres",
+	#"res://Scripts/InvScripts/InvItems/wheat.tres",
+	#"res://Scripts/InvScripts/InvItems/wheat.tres",
+	#"res://Scripts/InvScripts/InvItems/wheat.tres"
 #]
 
 func _ready() -> void:

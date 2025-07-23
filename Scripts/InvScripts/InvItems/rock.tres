@@ -13,3 +13,5 @@ count = 1
 buildable = false
 is_weapon = true
 strength = 10
+defence = 0
+fuel_efficiency = 0.0

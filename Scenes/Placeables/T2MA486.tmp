@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://blthd7apu4fru"]
+
+[ext_resource type="Texture2D" uid="uid://bp3l0oc75pndt" path="res://Assets/Sunnyside_World_Assets/extractors/mineralExtractorT2.png" id="1_5y4pg"]
+[ext_resource type="Script" path="res://Scripts/extractors/T2MinExt.gd" id="1_yympo"]
+[ext_resource type="Resource" uid="uid://doksfufb1a1ws" path="res://Scripts/InvScripts/InvItems/coal.tres" id="2_gxive"]
+[ext_resource type="Texture2D" uid="uid://kt0gvwgdygoj" path="res://Assets/Sunnyside_World_Assets/UI/cancel.png" id="2_s2cr1"]
+[ext_resource type="Resource" uid="uid://orkjrt512idm" path="res://Scripts/InvScripts/InvItems/iron.tres" id="3_30en0"]
+[ext_resource type="Texture2D" uid="uid://kvfwmicdlw1m" path="res://Assets/Sunnyside_World_Assets/UI/confirm.png" id="3_380ip"]
+[ext_resource type="Resource" uid="uid://c3hon5xlag6kh" path="res://Scripts/InvScripts/InvItems/gold.tres" id="4_c1vvn"]
+[ext_resource type="Script" path="res://Scripts/extractors/drop_area_ext.gd" id="8_hhper"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jtlfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5y4pg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bexa3"]
+size = Vector2(16, 16)
+
+[node name="T2MineralExtractor" type="StaticBody2D"]
+script = ExtResource("1_yympo")
+coal_data = ExtResource("2_gxive")
+iron_data = ExtResource("3_30en0")
+gold_data = ExtResource("4_c1vvn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_jtlfw")
+autoplay = "default"
+
+[node name="Cancel" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_s2cr1")
+
+[node name="Confirm" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_380ip")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bexa3")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -27.0
+offset_top = -17.0
+offset_right = 33.0
+offset_bottom = -9.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="DropArea" type="Panel" parent="." node_paths=PackedStringArray("min_ext")]
+offset_left = -16.0
+offset_top = 9.0
+offset_right = 18.0
+offset_bottom = 17.0
+tooltip_text = "Place fuel here to decrease the time needed to make resources."
+script = ExtResource("8_hhper")
+min_ext = NodePath("..")
+
+[node name="Label" type="Label" parent="DropArea"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 9
+text = "DROP!"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

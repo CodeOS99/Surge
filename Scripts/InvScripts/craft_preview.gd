@@ -72,6 +72,7 @@ func _match_recipe() -> CraftingRecipe: # Returns a CraftingRecipe resource or n
 			# Check both name and count requirement for each slot
 			if recipe.pattern[i] != curr_grid_name_pattern[i] or recipe.item_counts_in_pattern[i] > curr_grid_count_pattern[i]:
 				_match = false
+				print(recipe.pattern[i])
 				break # Mismatch found, move to next recipe
 		if _match:
 			return recipe # Found a match!

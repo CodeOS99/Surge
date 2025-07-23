@@ -346,7 +346,7 @@ func goToSoulYard():
 	Globals.transition_to_scene(get_tree(), "res://Scenes/soulyard.tscn")
 
 func takeDamage(n: int):
-	if n < 0:
+	if n < 0 and not is_dying:
 		var raw_damage = abs(n) # Get the positive value of the incoming damage
 
 		var defense = initDefence + defenceBuffs["armour"]
@@ -382,6 +382,7 @@ func takeDamage(n: int):
 var is_dying = false
 func die():
 	# Prevent multiple death animations/scene changes
+	cam.zoom = Vector2(10, 10)
 	if is_dying:
 		return
 	is_dying = true
